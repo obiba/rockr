@@ -1,0 +1,31 @@
+Package: rockr
+Type: Package
+Title: What the Package Does (Title Case)
+Description: "Rocker" R server connector.
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Yannick",
+             family = "Marcon",
+             role = c("aut", "cre"),
+             email = "yannick.marcon@obiba.org",
+             comment = c(ORCID = "0000-0003-0138-2023")),
+      person("OBiBa group",
+             role="cph",
+             email="info@obiba.org"))
+Depends:
+    R (>= 3.1),
+    httr
+Imports:
+    jsonlite,
+    mime,
+    progress
+Suggests:
+    knitr
+License: MIT + file LICENSE
+LazyData: true
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE, r6 = FALSE)
+RoxygenNote: 7.1.1
+
