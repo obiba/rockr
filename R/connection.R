@@ -126,7 +126,7 @@ rockr.login <- function(username, password, token, url, opts=list(), restore=NUL
 #' @export
 rockr.logout <- function(conn, save=FALSE) {
   if (!is.null(conn$session)) {
-    rockr.delete(conn, "r", "session", conn$session$id)
+    ignore <- rockr.delete(conn, "r", "session", conn$session$id)
   }
 }
 

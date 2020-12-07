@@ -18,15 +18,14 @@ rockr.eval(conn, quote(ls()))
 rockr.eval(conn, call("ls"))
 
 cmd <- rockr.assign(conn, "n", 123, async = TRUE)
-cmd
-rockr.assign(conn, "z", quote(Stibble::tribble(
+cmd <- rockr.assign(conn, "z", quote(tibble::tribble(
   ~colA, ~colB,
   'a',   1,
   'b',   2,
   'c',   3
 )), async = TRUE)
-
-rockr.eval(conn, "z", async = TRUE)
+cmd <- rockr.eval(conn, quote(z), async = TRUE)
+rockr.command_result(conn, cmd$id, wait = TRUE, rm = FALSE)
 
 cmds <- rockr.commands(conn)
 cmds
@@ -36,5 +35,7 @@ rockr.command(conn, cmds$id[2], wait = TRUE)
 rockr.command_result(conn, cmds$id[2], wait = TRUE)
 rockr.command(conn, cmds$id[3], wait = TRUE)
 rockr.command_result(conn, cmds$id[3], wait = TRUE)
+
+rockr.logout(conn)
 
 rlang::last_trace()
