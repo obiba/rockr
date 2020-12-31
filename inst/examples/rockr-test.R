@@ -35,6 +35,23 @@ rockr.command(conn, cmds$id[2], wait = TRUE)
 rockr.command_result(conn, cmds$id[2], wait = TRUE)
 rockr.command(conn, cmds$id[3], wait = TRUE)
 rockr.command_result(conn, cmds$id[3], wait = TRUE)
+rockr.logout(conn)
+
+conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+getwd()
+list.files()
+rockr.eval(conn, call("list.files"))
+rockr.file_upload(conn, source = "LICENSE", destination = "/somedir/license", overwrite = F)
+rockr.file_upload(conn, source = "DESCRIPTION", destination = "/somedir/license", overwrite = T)
+rockr.file_upload(conn, source = "DESCRIPTION", destination = "/somedir/license", overwrite = T, temp = T)
+rockr.eval(conn, call("list.files", "somedir"))
+list.files(rockr.eval(conn, call("getwd")))
+list.files(rockr.eval(conn, call("tempdir")))
+
+rockr.file_upload(conn, source = "LICENSE", destination = "license", overwrite = F)
+rockr.eval(conn, call("list.files"))
+rockr.file_download(conn, "license", overwrite = TRUE)
+rockr.file_download(conn, "license", destination = "lic", overwrite = TRUE)
 
 rockr.logout(conn)
 

@@ -104,7 +104,7 @@ rockr.login <- function(username, password, token, url, opts=list(), restore=NUL
   class(conn) <- "rockr"
 
   # get user profile to test sign-in
-  resp <- httr::POST(.url(conn, "r", "sessions"), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token), handle = conn$handle, content_type("application/json"), .verbose())
+  resp <- httr::POST(.url(conn, "r", "sessions"), query = list(subject = username), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token), handle = conn$handle, content_type("application/json"), .verbose())
   session <- content(resp)
   conn$session <- session
 
@@ -134,7 +134,10 @@ rockr.logout <- function(conn, save=FALSE) {
 print.rockr <- function(x, ...) {
   cat("url:", x$url, "\n")
   cat("name:", x$name, "\n")
-  cat("session$id:", x$session$id, "\n")
+  cat("session:\n")
+  cat("  id:", x$session$id, "\n")
+  cat("  subject:", x$session$subject, "\n")
+  cat("  createDate:", x$session$createDate, "\n")
 }
 
 #' Generic REST resource getter.

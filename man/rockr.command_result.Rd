@@ -13,7 +13,7 @@ rockr.command_result(conn, id, wait = FALSE, rm = TRUE)
 
 \item{wait}{Wait for the command to complete (default is FALSE).}
 
-\item{rm}{Remove command from list after retrieving the result (default is TRUE).}
+\item{rm}{Remove command from the list of asynchronous commands after retrieving the result (default is TRUE).}
 }
 \description{
 Get the result of an asynchronous R commands in the remote R session. The command is removed from the
