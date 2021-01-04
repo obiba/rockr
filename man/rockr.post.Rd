@@ -10,6 +10,7 @@ rockr.post(
   query = list(),
   body = "",
   contentType = "application/x-rscript",
+  acceptType = "application/octet-stream, application/json",
   callback = NULL
 )
 }
@@ -22,7 +23,9 @@ rockr.post(
 
 \item{body}{The body of the request.}
 
-\item{contentType}{The type of the body content.}
+\item{contentType}{The type of the body content. Default is 'application/x-rscript'.}
+
+\item{acceptType}{The type of the body content. Default is 'application/octet-stream, application/json', i.e. a serialized R object or an error message.}
 
 \item{callback}{A callback function to handle the response object.}
 }
@@ -32,7 +35,7 @@ Generic REST resource creation.
 \examples{
 \dontrun{
 conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.post(conn, 'some', 'resources', body='{"some":"value"}')
+rockr.post(conn, 'some', 'resources', body='ls()')
 rockr.logout(conn)
 }
 }

@@ -167,18 +167,19 @@ rockr.get <- function(conn, ..., query=list(), callback=NULL) {
 #' @param ... Resource path segments.
 #' @param query Named list of query parameters.
 #' @param body The body of the request.
-#' @param contentType The type of the body content.
+#' @param contentType The type of the body content. Default is 'application/x-rscript'.
+#' @param acceptType The type of the body content. Default is 'application/octet-stream, application/json', i.e. a serialized R object or an error message.
 #' @param callback A callback function to handle the response object.
 #' @import httr
 #' @examples
 #' \dontrun{
 #' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.post(conn, 'some', 'resources', body='{"some":"value"}')
+#' rockr.post(conn, 'some', 'resources', body='ls()')
 #' rockr.logout(conn)
 #' }
 #' @export
-rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', callback=NULL) {
-  r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), config=conn$config, handle = conn$handle, .verbose())
+rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
+  r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), accept(acceptType), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 
@@ -189,7 +190,7 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' @param ... Resource path segments.
 #' @param query Named list of query parameters.
 #' @param body The body of the request.
-#' @param contentType The type of the body content.
+#' @param contentType The type of the body content. Default is 'application/json'.
 #' @param callback A callback function to handle the response object.
 #' @import httr
 #' @examples
@@ -199,7 +200,7 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' rockr.logout(conn)
 #' }
 #' @export
-rockr.put <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', callback=NULL) {
+rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
   r <- PUT(.url(conn, ...), query=query, body=body, content_type(contentType), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
@@ -301,27 +302,10 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 .handleError <- function(conn, response) {
   headers <- httr::headers(response)
   content <- .getContent(conn, response)
+  if (!is.null(content) && "message" %in% names(content)) {
+    stop(content$message, call.=FALSE)
+  }
   msg <- http_status(response)$message
-  if (is.null(content)) {
-    stop(msg, call.=FALSE)
-  }
-
-  if ("status" %in% names(content)) {
-    msg <- paste0(msg, "; ", content$status)
-    if ("arguments" %in% names(content)) {
-      msg <- paste0(msg, ": ", paste(content$arguments, collapse = ", "))
-    }
-    stop(msg, call.=FALSE)
-  }
-
-  if ("error" %in% names(content)) {
-    if ("message" %in% names(content)) {
-      stop(content$message, call.=FALSE)
-    } else {
-      stop(content$error, call.=FALSE)
-    }
-  }
-
   stop(msg, call.=FALSE)
 }
 

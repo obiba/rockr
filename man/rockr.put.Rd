@@ -9,7 +9,7 @@ rockr.put(
   ...,
   query = list(),
   body = "",
-  contentType = "application/x-rscript",
+  contentType = "application/json",
   callback = NULL
 )
 }
@@ -22,7 +22,7 @@ rockr.put(
 
 \item{body}{The body of the request.}
 
-\item{contentType}{The type of the body content.}
+\item{contentType}{The type of the body content. Default is 'application/json'.}
 
 \item{callback}{A callback function to handle the response object.}
 }

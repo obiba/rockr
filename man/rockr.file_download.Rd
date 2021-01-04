@@ -17,7 +17,8 @@ rockr.file_download(
 
 \item{source}{Path to the file in the R server file system.}
 
-\item{destination}{Path to the file to be written. If omitted, file with same name in the working directory will be written.}
+\item{destination}{Path to the file to be written. If omitted, file with same name in the working directory will be written.
+Any non-existing parent directories will be created.}
 
 \item{overwrite}{Overwrite the destination file if TRUE. Default is FALSE.}
 

@@ -5,8 +5,10 @@
 #' @family execution functions
 #' @param conn A rockr connection object.
 #' @param script R script to execute.
+#' @param json Response is in JSON format or an object serialized by R. Default is FALSE.
 #' @param async R script is executed asynchronously within the session (default is FALSE).
-#'   If TRUE, the value returned is the ID of the command to look for (from Opal 2.1).
+#'   If TRUE, the value returned is the command object to look for.
+#' @return A unserialized R object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.login(url='https://rocker-demo.obiba.org')
@@ -16,9 +18,12 @@
 #' }
 #' @export
 #' @import httr
-rockr.eval <- function(conn, script, async=FALSE) {
+rockr.eval <- function(conn, script, json=FALSE, async=FALSE) {
   body <- .deparse(script)
   query <- list(async = async)
-  resp <- rockr.post(conn, "r", "session", conn$session$id, "_eval", query = query, body = body, contentType = "application/x-rscript")
-  resp
+  if (json) {
+    rockr.post(conn, "r", "session", conn$session$id, "_eval", query = query, body = body, acceptType = "application/json")
+  } else {
+    rockr.post(conn, "r", "session", conn$session$id, "_eval", query = query, body = body)
+  }
 }

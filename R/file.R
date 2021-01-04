@@ -6,6 +6,7 @@
 #' @param conn A rockr connection object.
 #' @param source Path to the file in the R server file system.
 #' @param destination Path to the file to be written. If omitted, file with same name in the working directory will be written.
+#' Any non-existing parent directories will be created.
 #' @param overwrite Overwrite the destination file if TRUE. Default is FALSE.
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
 #' @examples
@@ -22,7 +23,21 @@
 #' @export
 rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
   path <- ifelse(is.null(destination), source, destination)
-  GET(.url(conn, "r", "session", conn$session$id, "_download"), query=list(path=source, temp=temp), httr::write_disk(path, overwrite=overwrite))
+  parent <- dirname(path)
+  if (!dir.exists(parent)) {
+    dir.create(parent, recursive = TRUE)
+  }
+  r <- GET(.url(conn, "r", "session", conn$session$id, "_download"), query=list(path=source, temp=temp), httr::write_disk(path, overwrite=overwrite))
+  if (r$status>=300) {
+    headers <- httr::headers(r)
+    msg <- http_status(r)$message
+    content <- .getContent(conn, r)
+    if (!is.null(content) && "message" %in% names(content)) {
+      msg <- content$message
+    }
+    unlink(path)
+    stop(msg, call.=FALSE)
+  }
 }
 
 #' Upload a file
@@ -49,7 +64,10 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' }
 #' @export
 rockr.file_upload <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
-  POST(.url(conn, "r", "session", conn$session$id, "_upload"), body=list(file=httr::upload_file(source), path=destination, overwrite=overwrite, temp=temp),
-       encode = "multipart", content_type("multipart/form-data"), accept("text/html"),
+  r <- POST(.url(conn, "r", "session", conn$session$id, "_upload"), body=list(file=httr::upload_file(source), path=destination, overwrite=overwrite, temp=temp),
+       encode = "multipart", content_type("multipart/form-data"), accept("application/json"),
        config=conn$config, handle=conn$handle, .verbose())
+  if (r$status>=300) {
+    .handleError(conn, r)
+  }
 }

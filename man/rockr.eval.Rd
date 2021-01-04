@@ -4,15 +4,20 @@
 \alias{rockr.eval}
 \title{Evaluate a R script}
 \usage{
-rockr.eval(conn, script, async = FALSE)
+rockr.eval(conn, script, json = FALSE, async = FALSE)
 }
 \arguments{
 \item{conn}{A rockr connection object.}
 
 \item{script}{R script to execute.}
 
+\item{json}{Response is in JSON format or an object serialized by R. Default is FALSE.}
+
 \item{async}{R script is executed asynchronously within the session (default is FALSE).
-If TRUE, the value returned is the ID of the command to look for (from Opal 2.1).}
+If TRUE, the value returned is the command object to look for.}
+}
+\value{
+A unserialized R object.
 }
 \description{
 Execute a R script in the remote R session.
