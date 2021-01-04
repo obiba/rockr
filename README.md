@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.com/obiba/rockr.svg?branch=master)](https://travis-ci.com/obiba/rockr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rockr)](https://cran.r-project.org/package=rockr)
 
-R implementation of the Rocker R server REST API.
+R implementation of the Rock R server REST API. Allows to interact with a remote R session
+in a stateful way.
 
 Usage:
 
@@ -29,6 +30,10 @@ rockr.eval(conn, call("ls"))
 # Asynchronous assignment and evaluation
 cmd <- rockr.eval(conn, quote(z), async = TRUE)
 rockr.command_result(conn, cmd$id, wait = TRUE)
+
+# File upload and download
+rockr.file_upload(conn, source = "foo", destination = "/somedir/bar")
+rockr.file_download(conn, source = "/somedir/bar", destination = "foo2")
 
 rockr.logout(conn)
 ```
