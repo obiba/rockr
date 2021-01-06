@@ -156,7 +156,7 @@ print.rockr <- function(x, ...) {
 #' }
 #' @export
 rockr.get <- function(conn, ..., query=list(), callback=NULL) {
-  r <- GET(.url(conn, ...), query=query, config=conn$config, handle = conn$handle, .verbose())
+  r <- GET(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 
@@ -179,7 +179,7 @@ rockr.get <- function(conn, ..., query=list(), callback=NULL) {
 #' }
 #' @export
 rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
-  r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), accept(acceptType), config=conn$config, handle = conn$handle, .verbose())
+  r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), accept(acceptType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 
@@ -201,7 +201,7 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' }
 #' @export
 rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
-  r <- PUT(.url(conn, ...), query=query, body=body, content_type(contentType), config=conn$config, handle = conn$handle, .verbose())
+  r <- PUT(.url(conn, ...), query=query, body=body, content_type(contentType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 
@@ -221,7 +221,7 @@ rockr.put <- function(conn, ..., query=list(), body='', contentType='application
 #' }
 #' @export
 rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
-  r <- DELETE(.url(conn, ...), query=query, config=conn$config, handle = conn$handle, .verbose())
+  r <- DELETE(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 

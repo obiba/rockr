@@ -27,7 +27,8 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
   if (!dir.exists(parent)) {
     dir.create(parent, recursive = TRUE)
   }
-  r <- GET(.url(conn, "r", "session", conn$session$id, "_download"), query=list(path=source, temp=temp), httr::write_disk(path, overwrite=overwrite))
+  r <- GET(.url(conn, "r", "session", conn$session$id, "_download"), query=list(path=source, temp=temp), httr::write_disk(path, overwrite=overwrite),
+           add_headers(Authorization = conn$authorization), config=conn$config, handle=conn$handle, .verbose())
   if (r$status>=300) {
     headers <- httr::headers(r)
     msg <- http_status(r)$message
@@ -66,7 +67,7 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 rockr.file_upload <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
   r <- POST(.url(conn, "r", "session", conn$session$id, "_upload"), body=list(file=httr::upload_file(source), path=destination, overwrite=overwrite, temp=temp),
        encode = "multipart", content_type("multipart/form-data"), accept("application/json"),
-       config=conn$config, handle=conn$handle, .verbose())
+       add_headers(Authorization = conn$authorization), config=conn$config, handle=conn$handle, .verbose())
   if (r$status>=300) {
     .handleError(conn, r)
   }
