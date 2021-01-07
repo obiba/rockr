@@ -105,6 +105,9 @@ rockr.login <- function(username, password, token, url, opts=list(), restore=NUL
 
   # get user profile to test sign-in
   resp <- httr::POST(.url(conn, "r", "sessions"), query = list(subject = username), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token), handle = conn$handle, content_type("application/json"), .verbose())
+  if (resp$status>=300) {
+    .handleError(conn, resp)
+  }
   session <- content(resp)
   conn$session <- session
 
