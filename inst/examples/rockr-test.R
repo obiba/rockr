@@ -118,3 +118,24 @@ rockr.eval(conn, call("stop", "test"), json = TRUE)
 
 rockr.logout(conn)
 
+#
+# RAppArmor integration
+#
+
+library(rockr)
+options(verbose = F, error = rlang::entrace)
+
+# administrator has full access
+conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+rockr.eval(conn, quote(.libPaths()))
+rockr.eval(conn, quote(read.table("/etc/passwd")))
+rockr.logout(conn)
+
+# manager cannot use R
+conn <- rockr.login(username='manager', password='password', url = "http://localhost:6312")
+
+# user has access restricted by apparmor (if enabled)
+conn <- rockr.login(username='user', password='password', url = "http://localhost:6312")
+rockr.eval(conn, quote(.libPaths()))
+rockr.eval(conn, quote(read.table("/etc/passwd")))
+rockr.logout(conn)
