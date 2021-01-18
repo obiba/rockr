@@ -1,8 +1,9 @@
 Package: rockr
 Type: Package
-Title: What the Package Does (Title Case)
-Description: "Rocker" R server connector.
-Version: 0.1.0
+Title: 'Rock' R Server Client
+Description: Connector to the REST API of a 'Rock' R server, to perform operations 
+  on a remote R server session, or administration tasks.
+Version: 0.9.0
 Authors@R: 
     c(person(given = "Yannick",
              family = "Marcon",

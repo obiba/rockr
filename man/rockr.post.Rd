@@ -47,3 +47,4 @@ Other REST functions:
 \code{\link{rockr.put}()}
 }
 \concept{REST functions}
+\keyword{internal}

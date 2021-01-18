@@ -129,7 +129,7 @@ rockr.open <- function(conn) {
 
 #' Close the R session, if there is any associated to the connection.
 #'
-#' @title Close R session
+#' @title Close the R session
 #'
 #' @family connection functions
 #' @param conn A rockr connection object.
@@ -174,7 +174,7 @@ print.rockr <- function(x, ...) {
 #' rockr.get(conn, 'r', 'session', conn$session$id)
 #' rockr.close(conn)
 #' }
-#' @export
+#' @keywords internal
 rockr.get <- function(conn, ..., query=list(), callback=NULL) {
   r <- GET(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
@@ -198,7 +198,7 @@ rockr.get <- function(conn, ..., query=list(), callback=NULL) {
 #' rockr.post(conn, 'some', 'resources', body='ls()')
 #' rockr.close(conn)
 #' }
-#' @export
+#' @keywords internal
 rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
   r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), accept(acceptType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
@@ -221,7 +221,7 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' rockr.put(conn, 'some', 'resource', 'toupdate', body='{"some":"value"}')
 #' rockr.close(conn)
 #' }
-#' @export
+#' @keywords internal
 rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
   r <- PUT(.url(conn, ...), query=query, body=body, content_type(contentType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
@@ -242,7 +242,7 @@ rockr.put <- function(conn, ..., query=list(), body='', contentType='application
 #' rockr.delete(conn, 'some', 'resource')
 #' rockr.close(conn)
 #' }
-#' @export
+#' @keywords internal
 rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   r <- DELETE(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)

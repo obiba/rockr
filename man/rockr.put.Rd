@@ -44,3 +44,4 @@ Other REST functions:
 \code{\link{rockr.post}()}
 }
 \concept{REST functions}
+\keyword{internal}

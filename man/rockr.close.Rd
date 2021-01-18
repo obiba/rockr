@@ -2,7 +2,7 @@
 % Please edit documentation in R/connection.R
 \name{rockr.close}
 \alias{rockr.close}
-\title{Close R session}
+\title{Close the R session}
 \usage{
 rockr.close(conn)
 }
