@@ -12,6 +12,9 @@ Usage:
 library(rockr)
 conn <- rockr.login('username', 'passwd', url = 'http://localhost:6312')
 
+# Open an R session
+rockr.open(conn)
+
 # Assign a R expression to a R symbol
 rockr.assign(conn, 'x', 123)
 rockr.assign(conn, 'y', 'hello')
@@ -35,6 +38,6 @@ rockr.command_result(conn, cmd$id, wait = TRUE)
 rockr.file_upload(conn, source = "foo", destination = "/somedir/bar")
 rockr.file_download(conn, source = "/somedir/bar", destination = "foo2")
 
-rockr.logout(conn)
+rockr.close(conn)
 ```
 

@@ -20,9 +20,10 @@ Generic REST resource getter.
 }
 \examples{
 \dontrun{
-conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.get(conn, 'project', 'datashield')
-rockr.logout(conn)
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
+rockr.get(conn, 'r', 'session', conn$session$id)
+rockr.close(conn)
 }
 }
 \seealso{

@@ -31,9 +31,10 @@ Generic REST resource update.
 }
 \examples{
 \dontrun{
-conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
 rockr.put(conn, 'some', 'resource', 'toupdate', body='{"some":"value"}')
-rockr.logout(conn)
+rockr.close(conn)
 }
 }
 \seealso{

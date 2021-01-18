@@ -18,9 +18,10 @@ Get an asynchronous R commands in the remote R session.
 }
 \examples{
 \dontrun{
-o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.command(o, '1234')
-rockr.logout(o)
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
+rockr.command(conn, '1234')
+rockr.close(conn)
 }
 }
 \seealso{

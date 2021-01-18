@@ -11,14 +11,15 @@
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' # download a file
 #' rockr.file_download(conn, 'data.csv')
 #' # download, create destination folder and rename file
-#' rockr.file_download(o, '/DatabaseTest.sav', 'spss/test.sav')
+#' rockr.file_download(conn, '/DatabaseTest.sav', 'spss/test.sav')
 #' # download a folder
-#' rockr.file_download(o, 'output', 'output.zip')
-#' rockr.logout(o)
+#' rockr.file_download(conn, 'output', 'output.zip')
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
@@ -54,14 +55,15 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' # upload a file
 #' rockr.file_upload(conn, 'data.csv')
 #' # download, create destination folder and rename file
-#' rockr.file_upload(o, 'DatabaseTest.sav', '/spss/test.sav')
+#' rockr.file_upload(conn, 'DatabaseTest.sav', '/spss/test.sav')
 #' # upload a folder
-#' rockr.file_upload(o, 'input')
-#' rockr.logout(o)
+#' rockr.file_upload(conn, 'input')
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.file_upload <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {

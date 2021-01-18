@@ -1,7 +1,7 @@
 
-#' Log in Rocker.
+#' Connect with Rocker.
 #'
-#' @title Rocker login
+#' @title Rocker connection
 #'
 #' @family connection functions
 #' @return A rockr connection object.
@@ -11,44 +11,39 @@
 #'  Can be provided by "rockr.token" option.
 #' @param url Rocker R server url. Can be provided by "rockr.url" option.
 #' @param opts Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rockr.opts" option.
-#' @param restore Workspace ID to be restored (see also rockr.logout)
 #' @export
 #' @import httr
 #' @examples
 #' \dontrun{
-#' #### The below examples illustrate the different ways to login in rockr ####
+#' #### The below examples illustrate the different ways to connect to rockr ####
 #'
-#' # explicite username/password login
-#' conn <- rockr.login(username='administrator', password='password',
+#' # explicit username/password connection
+#' conn <- rockr.connect(username='administrator', password='password',
 #'                     url='https://rocker-demo.obiba.org')
-#' rockr.logout(conn)
 #'
-#'  # explicite personal access token login
-#' conn <- rockr.login(token='HYG16LO0VaX4O0UardNbiqmr2ByBpRke',
+#' # explicit access token connection
+#' conn <- rockr.connect(token='HYG16LO0VaX4O0UardNbiqmr2ByBpRke',
 #'                     url='https://rocker-demo.obiba.org')
-#' rockr.logout(conn)
 #'
-#' # login using options and user credentials
+#' # connect using options and user credentials
 #' options(rockr.username='administrator',
 #'  rockr.password='password',
 #'  rockr.url='https://rocker-demo.obiba.org')
-#' conn <- rockr.login()
-#' rockr.logout(conn)
+#' conn <- rockr.connect()
 #'
-#' # login using options and personal access token
+#' # connect using options and personal access token
 #' options(rockr.token='HYG16LO0VaX4O0UardNbiqmr2ByBpRke',
 #'  rockr.url='https://rocker-demo.obiba.org')
-#' conn <- rockr.login()
-#' rockr.logout(conn)
+#' conn <- rockr.connect()
 #'
-#' # login using ssl key pair
+#' # connect using ssl key pair
 #' options(rockr.opts=list(
 #'    sslcert='my-publickey.pem',
 #'    sslkey='my-privatekey.pem'))
-#' conn <- rockr.login(url='https://rocker-demo.obiba.org')
-#' rockr.logout(conn)
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
 #'}
-rockr.login <- function(username, password, token, url, opts=list(), restore=NULL) {
+rockr.connect <- function(username=getOption("rockr.username"), password=getOption("rockr.password"),
+                        token=getOption("rockr.token"), url=getOption("rockr.url"), opts=getOption("rockr.opts", list())) {
   if (is.null(url)) stop("Rocker R server url is required", call.=FALSE)
   conn <- new.env(parent=globalenv())
   # Username
@@ -100,36 +95,55 @@ rockr.login <- function(username, password, token, url, opts=list(), restore=NUL
   conn$config$options <- options
   conn$handle <- httr::handle(paste0(conn$url, "/", sample(1000:9999, 1))) # append a random number to ensure urls are different
   conn$rid <- NULL
-  conn$restore <- restore
   class(conn) <- "rockr"
+  conn
+}
 
-  # get user profile to test sign-in
-  resp <- httr::POST(.url(conn, "r", "sessions"), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token), handle = conn$handle, content_type("application/json"), .verbose())
+#' Open a R session, and store the session ID within the connection object.
+#'
+#' @title Open an R session
+#'
+#' @family connection functions
+#' @param conn A rockr connection object.
+#' @examples
+#' \dontrun{
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.close(conn)
+#' }
+#' @export
+rockr.open <- function(conn) {
+  if (!is.null(conn$session)) {
+    warning("Closing a previous R session")
+    rockr.close(conn)
+  }
+  # create an R session
+  resp <- httr::POST(.url(conn, "r", "sessions"), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token),
+                     handle = conn$handle, content_type("application/json"), .verbose())
   if (resp$status>=300) {
     .handleError(conn, resp)
   }
   session <- content(resp)
   conn$session <- session
-
-  conn
 }
 
-#' Clear the R sessions and logout from Rocker R server.
+#' Close the R session, if there is any associated to the connection.
 #'
-#' @title Logout from Rocker
+#' @title Close R session
 #'
 #' @family connection functions
 #' @param conn A rockr connection object.
-#' @param save Save the workspace with given identifier (default value is FALSE, current session ID if TRUE).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.logout(conn)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.close(conn)
 #' }
 #' @export
-rockr.logout <- function(conn, save=FALSE) {
+rockr.close <- function(conn) {
   if (!is.null(conn$session)) {
     ignore <- rockr.delete(conn, "r", "session", conn$session$id)
+    conn$session <- NULL
   }
 }
 
@@ -137,10 +151,12 @@ rockr.logout <- function(conn, save=FALSE) {
 print.rockr <- function(x, ...) {
   cat("url:", x$url, "\n")
   cat("name:", x$name, "\n")
-  cat("session:\n")
-  cat("  id:", x$session$id, "\n")
-  cat("  subject:", x$session$subject, "\n")
-  cat("  createDate:", x$session$createDate, "\n")
+  if (!is.null(x$session)) {
+    cat("session:\n")
+    cat("  id:", x$session$id, "\n")
+    cat("  subject:", x$session$subject, "\n")
+    cat("  createDate:", x$session$createDate, "\n")
+  }
 }
 
 #' Generic REST resource getter.
@@ -153,9 +169,10 @@ print.rockr <- function(x, ...) {
 #' @import httr
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.get(conn, 'project', 'datashield')
-#' rockr.logout(conn)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.get(conn, 'r', 'session', conn$session$id)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.get <- function(conn, ..., query=list(), callback=NULL) {
@@ -176,9 +193,10 @@ rockr.get <- function(conn, ..., query=list(), callback=NULL) {
 #' @import httr
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' rockr.post(conn, 'some', 'resources', body='ls()')
-#' rockr.logout(conn)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
@@ -198,9 +216,10 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' @import httr
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' rockr.put(conn, 'some', 'resource', 'toupdate', body='{"some":"value"}')
-#' rockr.logout(conn)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
@@ -218,9 +237,10 @@ rockr.put <- function(conn, ..., query=list(), body='', contentType='application
 #' @import httr
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' rockr.delete(conn, 'some', 'resource')
-#' rockr.logout(conn)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.delete <- function(conn, ..., query=list(), callback=NULL) {

@@ -29,14 +29,15 @@ Upload a file into the Rocker R session working directory.
 }
 \examples{
 \dontrun{
-conn <- rockr.login(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+rockr.open(conn)
 # upload a file
 rockr.file_upload(conn, 'data.csv')
 # download, create destination folder and rename file
-rockr.file_upload(o, 'DatabaseTest.sav', '/spss/test.sav')
+rockr.file_upload(conn, 'DatabaseTest.sav', '/spss/test.sav')
 # upload a folder
-rockr.file_upload(o, 'input')
-rockr.logout(o)
+rockr.file_upload(conn, 'input')
+rockr.close(conn)
 }
 }
 \seealso{

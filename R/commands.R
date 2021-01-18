@@ -8,9 +8,10 @@
 #' @param df Return a data.frame (default is TRUE)
 #' @examples
 #' \dontrun{
-#' o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.commands(o)
-#' rockr.logout(o)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.commands(conn)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.commands <- function(conn, df=TRUE) {
@@ -65,9 +66,10 @@ rockr.commands <- function(conn, df=TRUE) {
 #' @param wait Wait for the command to complete.
 #' @examples
 #' \dontrun{
-#' o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.command(o, '1234')
-#' rockr.logout(o)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.command(conn, '1234')
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.command <- function(conn, id, wait=FALSE) {
@@ -87,9 +89,10 @@ rockr.command <- function(conn, id, wait=FALSE) {
 #' @param id R command ID.
 #' @examples
 #' \dontrun{
-#' o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.command_rm(o, '1234')
-#' rockr.logout(o)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.command_rm(conn, '1234')
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.command_rm <- function(conn, id) {
@@ -104,9 +107,10 @@ rockr.command_rm <- function(conn, id) {
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.commands_rm(o)
-#' rockr.logout(o)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.commands_rm(conn)
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.commands_rm <- function(conn) {
@@ -127,9 +131,10 @@ rockr.commands_rm <- function(conn) {
 #' @param rm Remove command from the list of asynchronous commands after retrieving the result (default is TRUE).
 #' @examples
 #' \dontrun{
-#' o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.command_result(o, '1234')
-#' rockr.logout(o)
+#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
+#' rockr.command_result(conn, '1234')
+#' rockr.close(conn)
 #' }
 #' @export
 rockr.command_result <- function(conn, id, wait = FALSE, rm = TRUE) {

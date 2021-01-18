@@ -6,7 +6,8 @@ options(verbose = F, error = rlang::entrace)
 # Assign and evaluate
 #
 
-conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+rockr.open(conn)
 conn
 
 # assign different type of values
@@ -46,13 +47,16 @@ rockr.command_result(conn, cmds$id[2], wait = TRUE)
 rockr.command(conn, cmds$id[3], wait = TRUE)
 rockr.command_result(conn, cmds$id[3], wait = TRUE)
 
-rockr.logout(conn)
+rockr.close(conn)
+conn
 
 #
 # Files
 #
 
-conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+rockr.open(conn)
+conn
 
 # files
 rockr.eval(conn, quote(list.files()))
@@ -86,13 +90,14 @@ rockr.eval(conn, quote(tempdir()))
 rockr.eval(conn, quote(list.files(tempdir(), recursive = TRUE)))
 rockr.eval(conn, quote(unlink(file.path(tempdir(), "somedir"), recursive = TRUE)))
 
-rockr.logout(conn)
+rockr.close(conn)
 
 #
 # JSON data transfer format and error handling
 #
 
-conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+rockr.open(conn)
 
 rockr.get(conn, "r", "sessions")
 
@@ -116,7 +121,7 @@ rockr.commands(conn)
 rockr.eval(conn, call("stop", "test"))
 rockr.eval(conn, call("stop", "test"), json = TRUE)
 
-rockr.logout(conn)
+rockr.close(conn)
 
 #
 # RAppArmor integration
@@ -126,16 +131,20 @@ library(rockr)
 options(verbose = F, error = rlang::entrace)
 
 # administrator has full access
-conn <- rockr.login(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+rockr.open(conn)
 rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
-rockr.logout(conn)
+rockr.close(conn)
 
 # manager cannot use R
-conn <- rockr.login(username='manager', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='manager', password='password', url = "http://localhost:6312")
+rockr.open(conn)
+conn
 
 # user has access restricted by apparmor (if enabled)
-conn <- rockr.login(username='user', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:6312")
+rockr.open(conn)
 rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
-rockr.logout(conn)
+rockr.close(conn)

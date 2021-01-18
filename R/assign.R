@@ -10,10 +10,11 @@
 #'   If TRUE, the value returned is the ID of the command to look for.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.login(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.open(conn)
 #' rockr.eval(conn, "x <- 'foo'")
-#' rockr.eval(o, "ls()")
-#' rockr.logout(conn)
+#' rockr.eval(conn, "ls()")
+#' rockr.close(conn)
 #' }
 #' @export
 #' @import httr

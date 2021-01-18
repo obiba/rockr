@@ -16,9 +16,10 @@ Get the list of asynchronous R commands in the remote R session.
 }
 \examples{
 \dontrun{
-o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.commands(o)
-rockr.logout(o)
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
+rockr.commands(conn)
+rockr.close(conn)
 }
 }
 \seealso{

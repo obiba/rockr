@@ -21,9 +21,10 @@ remote R session after this call.
 }
 \examples{
 \dontrun{
-o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.command_result(o, '1234')
-rockr.logout(o)
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
+rockr.command_result(conn, '1234')
+rockr.close(conn)
 }
 }
 \seealso{

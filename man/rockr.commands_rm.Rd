@@ -14,9 +14,10 @@ Remove all asynchronous R commands in the remote R session.
 }
 \examples{
 \dontrun{
-o <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.commands_rm(o)
-rockr.logout(o)
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
+rockr.commands_rm(conn)
+rockr.close(conn)
 }
 }
 \seealso{

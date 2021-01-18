@@ -20,9 +20,10 @@ Generic REST resource deletion.
 }
 \examples{
 \dontrun{
-conn <- rockr.login('administrator','password', url='https://rocker-demo.obiba.org')
+conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+rockr.open(conn)
 rockr.delete(conn, 'some', 'resource')
-rockr.logout(conn)
+rockr.close(conn)
 }
 }
 \seealso{

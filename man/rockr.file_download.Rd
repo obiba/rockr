@@ -29,14 +29,15 @@ Download a file or a folder from the Rocker R session working directory.
 }
 \examples{
 \dontrun{
-conn <- rockr.login(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+rockr.open(conn)
 # download a file
 rockr.file_download(conn, 'data.csv')
 # download, create destination folder and rename file
-rockr.file_download(o, '/DatabaseTest.sav', 'spss/test.sav')
+rockr.file_download(conn, '/DatabaseTest.sav', 'spss/test.sav')
 # download a folder
-rockr.file_download(o, 'output', 'output.zip')
-rockr.logout(o)
+rockr.file_download(conn, 'output', 'output.zip')
+rockr.close(conn)
 }
 }
 \seealso{
