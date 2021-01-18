@@ -148,3 +148,17 @@ rockr.open(conn)
 rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
 rockr.close(conn)
+
+#
+# Administration
+#
+
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+rockr.status(conn)
+rockr.stop(conn)
+rockr.status(conn)
+rockr.start(conn)
+rockr.status(conn)
+x <- rockr.restart(conn)
+x
+rockr.status(conn)

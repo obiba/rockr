@@ -1,6 +1,6 @@
-#' Evaluate a R script
+#' Assign an R expression
 #'
-#' Execute a R script in the remote R session.
+#' Assign an R expression to a symbol in the remote R session.
 #'
 #' @family execution functions
 #' @param conn A rockr connection object.
@@ -12,8 +12,14 @@
 #' \dontrun{
 #' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
-#' rockr.eval(conn, "x <- 'foo'")
-#' rockr.eval(conn, "ls()")
+#' rockr.assign(conn, "x", 123)
+#' rockr.assign(conn, "y", "abc")
+#' rockr.assign(conn, "z", quote(tibble::tribble(
+#'   ~colA, ~colB,
+#'   'a',   1,
+#'   'b',   2,
+#'   'c',   3
+#' )))
 #' rockr.close(conn)
 #' }
 #' @export

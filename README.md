@@ -10,7 +10,15 @@ Usage:
 
 ```
 library(rockr)
-conn <- rockr.login('username', 'passwd', url = 'http://localhost:6312')
+
+# Make a connection object
+conn <- rockr.connect('username', 'passwd', url = 'http://localhost:6312')
+
+# Get the status of the R server (admin only)
+rockr.status(conn)
+
+# Restart the remote R server (admin only)
+rockr.start(conn)
 
 # Open an R session
 rockr.open(conn)
@@ -38,6 +46,7 @@ rockr.command_result(conn, cmd$id, wait = TRUE)
 rockr.file_upload(conn, source = "foo", destination = "/somedir/bar")
 rockr.file_download(conn, source = "/somedir/bar", destination = "foo2")
 
+# Terminate the remote R session
 rockr.close(conn)
 ```
 
