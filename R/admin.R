@@ -75,3 +75,20 @@ rockr.restart <- function(conn) {
   info <- rockr.put(conn, "rserver")
   invisible(info$running)
 }
+
+#' List of the packages in the R server
+#'
+#' Get the list of packages from the R server.
+#'
+#' @family administration functions
+#' @param conn A rockr connection object.
+#' @examples
+#' \dontrun{
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.packages(conn)
+#' }
+#' @export
+#' @import httr
+rockr.packages <- function(conn) {
+  rockr.get(conn, "rserver", "packages")
+}

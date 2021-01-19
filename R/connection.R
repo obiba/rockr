@@ -175,8 +175,8 @@ print.rockr <- function(x, ...) {
 #' rockr.close(conn)
 #' }
 #' @keywords internal
-rockr.get <- function(conn, ..., query=list(), callback=NULL) {
-  r <- GET(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
+rockr.get <- function(conn, ..., query=list(), acceptType='application/octet-stream, application/json', callback=NULL) {
+  r <- GET(.url(conn, ...), query=query, accept(acceptType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
   .handleResponseOrCallback(conn, r, callback)
 }
 

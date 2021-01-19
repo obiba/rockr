@@ -1,6 +1,6 @@
 library(rockr)
 
-options(verbose = F, error = rlang::entrace)
+options(verbose = T, error = rlang::entrace)
 
 #
 # Assign and evaluate
@@ -162,3 +162,4 @@ rockr.status(conn)
 x <- rockr.restart(conn)
 x
 rockr.status(conn)
+rockr.packages(conn)

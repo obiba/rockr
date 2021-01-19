@@ -23,6 +23,7 @@ rockr.stop(conn)
 }
 \seealso{
 Other administration functions: 
+\code{\link{rockr.packages}()},
 \code{\link{rockr.start}()},
 \code{\link{rockr.status}()},
 \code{\link{rockr.stop}()}

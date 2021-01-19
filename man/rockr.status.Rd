@@ -20,6 +20,7 @@ rockr.status(conn)
 }
 \seealso{
 Other administration functions: 
+\code{\link{rockr.packages}()},
 \code{\link{rockr.restart}()},
 \code{\link{rockr.start}()},
 \code{\link{rockr.stop}()}

@@ -4,7 +4,13 @@
 \alias{rockr.get}
 \title{Generic REST resource getter.}
 \usage{
-rockr.get(conn, ..., query = list(), callback = NULL)
+rockr.get(
+  conn,
+  ...,
+  query = list(),
+  acceptType = "application/octet-stream, application/json",
+  callback = NULL
+)
 }
 \arguments{
 \item{conn}{A rockr connection object.}
