@@ -154,12 +154,21 @@ rockr.close(conn)
 #
 
 conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+
+# start/stop/status
 rockr.status(conn)
 rockr.stop(conn)
 rockr.status(conn)
 rockr.start(conn)
 rockr.status(conn)
-x <- rockr.restart(conn)
-x
+rockr.restart(conn)
 rockr.status(conn)
+
+# packages management
 rockr.packages(conn)
+rockr.package(conn, 'rlang')
+rockr.package_rm(conn, 'rlang')
+rockr.package(conn, 'rlang')
+rockr.package_install(conn, 'rlang')
+rockr.package(conn, 'rlang')
+rockr.package_install(conn, 'datashield/DSI', manager = 'github')
