@@ -163,6 +163,8 @@ rockr.start(conn)
 rockr.status(conn)
 rockr.restart(conn)
 rockr.status(conn)
+rockr.version(conn)
+rockr.log(conn, 100)
 
 # packages management
 rockr.packages(conn)

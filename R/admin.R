@@ -76,6 +76,41 @@ rockr.restart <- function(conn) {
   invisible(info$running)
 }
 
+#' Log of the R server
+#'
+#' Get the tail of the R server log.
+#'
+#' @family administration functions
+#' @param conn A rockr connection object.
+#' @param limit The number of lines in the tail.
+#' @examples
+#' \dontrun{
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.log(conn, 10)
+#' }
+#' @export
+#' @import httr
+rockr.log <- function(conn, limit=100) {
+  unlist(strsplit(rockr.get(conn, "rserver", "_log", query=list(limit=limit), acceptType='text/plain'), '\n'))
+}
+
+#' Version of the R server
+#'
+#' Get the version object of the R server.
+#'
+#' @family administration functions
+#' @param conn A rockr connection object.
+#' @examples
+#' \dontrun{
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.version(conn, 10)
+#' }
+#' @export
+#' @import httr
+rockr.version <- function(conn) {
+  rockr.get(conn, "rserver", "_version")
+}
+
 #' List of the packages in the R server
 #'
 #' Get the list of packages from the R server.

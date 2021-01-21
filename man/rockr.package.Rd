@@ -22,12 +22,14 @@ rockr.package(conn, 'tibble')
 }
 \seealso{
 Other administration functions: 
+\code{\link{rockr.log}()},
 \code{\link{rockr.package_install}()},
 \code{\link{rockr.package_rm}()},
 \code{\link{rockr.packages}()},
 \code{\link{rockr.restart}()},
 \code{\link{rockr.start}()},
 \code{\link{rockr.status}()},
-\code{\link{rockr.stop}()}
+\code{\link{rockr.stop}()},
+\code{\link{rockr.version}()}
 }
 \concept{administration functions}
