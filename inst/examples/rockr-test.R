@@ -24,6 +24,7 @@ rockr.assign(conn, "z", quote(tibble::tribble(
 rockr.eval(conn, quote(x))
 rockr.eval(conn, quote(y))
 rockr.eval(conn, quote(z))
+rockr.eval(conn, quote(z), json = TRUE)
 rockr.eval(conn, quote(ls()))
 rockr.eval(conn, call("ls"))
 
