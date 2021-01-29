@@ -155,7 +155,7 @@ print.rockr <- function(x, ...) {
     cat("session:\n")
     cat("  id:", x$session$id, "\n")
     cat("  subject:", x$session$subject, "\n")
-    cat("  createDate:", x$session$createDate, "\n")
+    cat("  createdDate:", x$session$createdDate, "\n")
   }
 }
 

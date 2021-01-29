@@ -28,7 +28,7 @@ rockr.commands <- function(conn, df=TRUE) {
     withError <- rep(NA, n)
     error <- rep(NA, n)
     finished <- rep(NA, n)
-    createDate <- rep(NA, n)
+    createdDate <- rep(NA, n)
     startDate <- rep(NA, n)
     endDate <- rep(NA, n)
     for (i in 1:n) {
@@ -37,7 +37,7 @@ rockr.commands <- function(conn, df=TRUE) {
       script[i] <- item$script
       status[i] <- item$status
       withResult[i] <- item$withResult
-      createDate[i] <- item$createDate
+      createdDate[i] <- item$createdDate
       if (!is.null(item$startDate)) {
         startDate[i] <- item$startDate
       }
@@ -50,7 +50,7 @@ rockr.commands <- function(conn, df=TRUE) {
       withError[i] <- item$withError
       finished[i] <- item$finished
     }
-    data.frame(id, script, status, withResult, withError, error, finished, createDate, startDate, endDate)
+    data.frame(id, script, status, withResult, withError, error, finished, createdDate, startDate, endDate)
   } else {
     data.frame()
   }

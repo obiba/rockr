@@ -31,7 +31,7 @@ rockr.status <- function(conn) {
 #' @import httr
 rockr.start <- function(conn) {
   info <- rockr.put(conn, "rserver")
-  invisible(info$running)
+  invisible(info$rServerStatus$running)
 }
 
 #' Stop the R server
@@ -50,7 +50,7 @@ rockr.start <- function(conn) {
 #' @import httr
 rockr.stop <- function(conn) {
   info <- rockr.delete(conn, "rserver")
-  invisible(info$running)
+  invisible(info$rServerStatus$running)
 }
 
 #' Restart the R server
@@ -69,11 +69,11 @@ rockr.stop <- function(conn) {
 #' @import httr
 rockr.restart <- function(conn) {
   info <- rockr.get(conn, "rserver")
-  if (info$running) {
+  if (info$rServerStatus$running) {
     rockr.delete(conn, "rserver")
   }
   info <- rockr.put(conn, "rserver")
-  invisible(info$running)
+  invisible(info$rServerStatus$running)
 }
 
 #' Log of the R server
