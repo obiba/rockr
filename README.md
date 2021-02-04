@@ -12,7 +12,7 @@ Usage:
 library(rockr)
 
 # Make a connection object
-conn <- rockr.connect('username', 'passwd', url = 'http://localhost:6312')
+conn <- rockr.connect('username', 'passwd', url = 'http://localhost:8085')
 
 # Get the status of the R server (admin only)
 rockr.status(conn)

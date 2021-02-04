@@ -6,7 +6,7 @@ options(verbose = F, error = rlang::entrace)
 # Assign and evaluate
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 conn
 
@@ -57,7 +57,7 @@ conn
 # Files
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 conn
 
@@ -99,7 +99,7 @@ rockr.close(conn)
 # JSON data transfer format and error handling
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 
 rockr.assign(conn, "xfunc", quote(function(){stop('test')}))
@@ -132,19 +132,19 @@ library(rockr)
 options(verbose = F, error = rlang::entrace)
 
 # administrator has full access
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
 rockr.close(conn)
 
 # manager cannot use R
-conn <- rockr.connect(username='manager', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='manager', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 conn
 
 # user has access restricted by apparmor (if enabled)
-conn <- rockr.connect(username='user', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
@@ -154,7 +154,7 @@ rockr.close(conn)
 # Administration
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:6312")
+conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
 
 # start/stop/status
 rockr.status(conn)
