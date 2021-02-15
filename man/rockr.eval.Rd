@@ -31,8 +31,4 @@ rockr.eval(conn, "ls()")
 rockr.close(conn)
 }
 }
-\seealso{
-Other execution functions: 
-\code{\link{rockr.assign}()}
-}
 \concept{execution functions}

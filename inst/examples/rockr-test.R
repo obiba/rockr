@@ -19,14 +19,14 @@ rockr.assign(conn, "z", quote(tibble::tribble(
   'b',   2,
   'c',   3
 )))
+rockr.assign(conn, "mtcars", mtcars)
 
 # evaluate expressions
 rockr.eval(conn, quote(x))
 rockr.eval(conn, quote(y))
 rockr.eval(conn, quote(z))
-View(rockr.eval(conn, quote(lapply(colnames(`z`), function(n) { list(name=n,class=class(`z`[[n]]),type=tibble::type_sum(`z`[[n]]), attributes=attributes(`z`[[n]])) }))))
 rockr.eval(conn, quote(z), json = TRUE)
-View(rockr.eval(conn, quote(lapply(colnames(`z`), function(n) { list(name=n,class=class(`z`[[n]]),type=tibble::type_sum(`z`[[n]]), attributes=attributes(`z`[[n]])) })), json = TRUE))
+rockr.eval(conn, quote(mtcars))
 rockr.eval(conn, quote(ls()))
 rockr.eval(conn, call("ls"))
 
@@ -175,3 +175,4 @@ rockr.package(conn, 'rlang')
 rockr.package_install(conn, 'rlang')
 rockr.package(conn, 'rlang')
 rockr.package_install(conn, 'datashield/DSI', manager = 'github')
+rockr.packages_datashield(conn)

@@ -128,6 +128,23 @@ rockr.packages <- function(conn) {
   rockr.get(conn, "rserver", "packages")
 }
 
+#' List of the settings of the DataSHIELD packages
+#'
+#' Discover the list of DataSHIELD packages and their settings from the R server.
+#'
+#' @family administration functions
+#' @param conn A rockr connection object.
+#' @examples
+#' \dontrun{
+#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' rockr.packages_datashield(conn)
+#' }
+#' @export
+#' @import httr
+rockr.packages_datashield <- function(conn) {
+  rockr.get(conn, "rserver", "packages", "_datashield")
+}
+
 #' Package description from the R server
 #'
 #' Get the package description from the R server.

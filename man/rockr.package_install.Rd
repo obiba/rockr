@@ -29,6 +29,7 @@ rockr.package_install(conn, 'tibble')
 Other administration functions: 
 \code{\link{rockr.log}()},
 \code{\link{rockr.package_rm}()},
+\code{\link{rockr.packages_datashield}()},
 \code{\link{rockr.packages}()},
 \code{\link{rockr.package}()},
 \code{\link{rockr.restart}()},
