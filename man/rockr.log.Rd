@@ -16,7 +16,8 @@ Get the tail of the R server log.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='administrator', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.log(conn, 10)
 }
 }

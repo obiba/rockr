@@ -6,9 +6,8 @@ options(verbose = F, error = rlang::entrace)
 # Assign and evaluate
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
 rockr.open(conn)
-conn
 
 # assign different type of values
 rockr.assign(conn, "x", 123)
@@ -51,15 +50,13 @@ rockr.command(conn, cmds$id[3], wait = TRUE)
 rockr.command_result(conn, cmds$id[3], wait = TRUE)
 
 rockr.close(conn)
-conn
 
 #
 # Files
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
 rockr.open(conn)
-conn
 
 # files
 rockr.eval(conn, quote(list.files()))
@@ -71,6 +68,7 @@ rockr.file_upload(conn, source = "DESCRIPTION", overwrite = FALSE)
 rockr.eval(conn, quote(list.files()))
 rockr.file_upload(conn, source = "DESCRIPTION", overwrite = FALSE, temp = TRUE)
 rockr.eval(conn, quote(list.files(tempdir())))
+rockr.eval(conn, quote(file.exists(file.path(tempdir(), "DESCRIPTION"))))
 rockr.file_download(conn, "foo", destination = "pwel", overwrite = TRUE)
 rockr.file_download(conn, "foo", destination = "pwel", overwrite = FALSE)
 unlink("pwel")
@@ -99,7 +97,7 @@ rockr.close(conn)
 # JSON data transfer format and error handling
 #
 
-conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
 rockr.open(conn)
 
 rockr.assign(conn, "xfunc", quote(function(){stop('test')}))
@@ -129,7 +127,6 @@ rockr.close(conn)
 #
 
 library(rockr)
-options(verbose = F, error = rlang::entrace)
 
 # administrator has full access
 conn <- rockr.connect(username='administrator', password='password', url = "http://localhost:8085")
@@ -138,10 +135,10 @@ rockr.eval(conn, quote(.libPaths()))
 rockr.eval(conn, quote(read.table("/etc/passwd")))
 rockr.close(conn)
 
-# manager cannot use R
+# manager cannot use R but can manage Rserve process
 conn <- rockr.connect(username='manager', password='password', url = "http://localhost:8085")
 rockr.open(conn)
-conn
+rockr.status(conn)
 
 # user has access restricted by apparmor (if enabled)
 conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
@@ -176,3 +173,14 @@ rockr.package_install(conn, 'rlang')
 rockr.package(conn, 'rlang')
 rockr.package_install(conn, 'datashield/DSI', manager = 'github')
 rockr.packages_datashield(conn)
+
+#
+# Source
+#
+
+conn <- rockr.connect(username='user', password='password', url = "http://localhost:8085")
+rockr.open(conn)
+
+rockr.eval.source(conn, path = "~/projects/R/system-info.R", json = TRUE)
+rockr.close(conn)
+

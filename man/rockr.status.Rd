@@ -14,7 +14,8 @@ Get the status of the R server, including information about the server node.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='administrator', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.status(conn)
 }
 }

@@ -8,13 +8,15 @@
 #' @param df Return a data.frame (default is TRUE)
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.commands(conn)
 #' rockr.close(conn)
 #' }
 #' @export
 rockr.commands <- function(conn, df=TRUE) {
+  .is.opened(conn)
   res <- rockr.get(conn, "r", "session", conn$session$id, "commands")
   if (!df) {
     return(res)
@@ -66,13 +68,15 @@ rockr.commands <- function(conn, df=TRUE) {
 #' @param wait Wait for the command to complete.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.command(conn, '1234')
 #' rockr.close(conn)
 #' }
 #' @export
 rockr.command <- function(conn, id, wait=FALSE) {
+  .is.opened(conn)
   query <- list()
   if (wait) {
     query["wait"] <- "true"
@@ -89,13 +93,15 @@ rockr.command <- function(conn, id, wait=FALSE) {
 #' @param id R command ID.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.command_rm(conn, '1234')
 #' rockr.close(conn)
 #' }
 #' @export
 rockr.command_rm <- function(conn, id) {
+  .is.opened(conn)
   ignore <- tryCatch(rockr.delete(conn, "r", "session", conn$session$id, "command", id), error=function(e){})
 }
 
@@ -107,13 +113,15 @@ rockr.command_rm <- function(conn, id) {
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.commands_rm(conn)
 #' rockr.close(conn)
 #' }
 #' @export
 rockr.commands_rm <- function(conn) {
+  .is.opened(conn)
   res <- lapply(rockr.commands(conn), function(cmd) {
     rockr.command_rm(conn, cmd$id)
   })
@@ -131,13 +139,15 @@ rockr.commands_rm <- function(conn) {
 #' @param rm Remove command from the list of asynchronous commands after retrieving the result (default is TRUE).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.command_result(conn, '1234')
 #' rockr.close(conn)
 #' }
 #' @export
 rockr.command_result <- function(conn, id, wait = FALSE, rm = TRUE) {
+  .is.opened(conn)
   if (wait) {
     cmd <- rockr.command(conn, id, wait=TRUE)
     if (cmd$status == "FAILED") {

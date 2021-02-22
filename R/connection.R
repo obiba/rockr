@@ -433,3 +433,11 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   }
   expression
 }
+
+#' Check connection is opened
+#' @keywords internal
+.is.opened <- function(conn) {
+  if (is.null(conn$session)) {
+    stop("Connection is not opened, use rockr.open() to create a new R session")
+  }
+}

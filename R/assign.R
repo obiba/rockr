@@ -10,7 +10,8 @@
 #'   If TRUE, the value returned is the ID of the command to look for.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.assign(conn, "mtcars", mtcars)
 #' rockr.assign(conn, "x", 123)
@@ -26,6 +27,7 @@
 #' @export
 #' @import httr
 rockr.assign <- function(conn, symbol, value, async=FALSE) {
+  .is.opened(conn)
   if(is.language(value) || is.function(value)) {
     rockr.assign.expr(conn, symbol, value, async)
   } else {
@@ -45,7 +47,8 @@ rockr.assign <- function(conn, symbol, value, async=FALSE) {
 #'   If TRUE, the value returned is the ID of the command to look for.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.assign.expr(conn, "x", 123)
 #' rockr.assign.expr(conn, "y", "abc")
@@ -60,6 +63,7 @@ rockr.assign <- function(conn, symbol, value, async=FALSE) {
 #' @export
 #' @import httr
 rockr.assign.expr <- function(conn, symbol, value, async=FALSE) {
+  .is.opened(conn)
   body <- .deparse(value)
   query <- list(s = symbol, async = async)
   resp <- rockr.post(conn, "r", "session", conn$session$id, "_assign", query = query, body = body, contentType = "application/x-rscript")
@@ -80,7 +84,8 @@ rockr.assign.expr <- function(conn, symbol, value, async=FALSE) {
 #'   If TRUE, the value returned is the ID of the command to look for.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' # push a data frame to the R server
 #' rockr.assign.data(o, "D", mtcars)
@@ -92,6 +97,7 @@ rockr.assign.expr <- function(conn, symbol, value, async=FALSE) {
 #' @export
 #' @import jsonlite
 rockr.assign.data <- function(conn, symbol, value, async=FALSE) {
+  .is.opened(conn)
   body <- jsonlite::base64_enc(serialize(value, NULL))
   body <- gsub("[\r\n]", "", body)
   query <- list(s = symbol, async = async)

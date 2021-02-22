@@ -29,7 +29,8 @@ Download a file or a folder from the Rocker R session working directory.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='user', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.open(conn)
 # download a file
 rockr.file_download(conn, 'data.csv')

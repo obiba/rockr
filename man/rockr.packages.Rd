@@ -14,7 +14,8 @@ Get the list of packages from the R server.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='administrator', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.packages(conn)
 }
 }

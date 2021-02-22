@@ -17,7 +17,8 @@ Start the R server, if not already running.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='administrator', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.start(conn)
 }
 }

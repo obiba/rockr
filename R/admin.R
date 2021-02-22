@@ -6,7 +6,8 @@
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.status(conn)
 #' }
 #' @export
@@ -24,7 +25,8 @@ rockr.status <- function(conn) {
 #' @return Logical indicating wether the R server is running (invisible).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.start(conn)
 #' }
 #' @export
@@ -43,7 +45,8 @@ rockr.start <- function(conn) {
 #' @return Logical indicating wether the R server is running (invisible).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.stop(conn)
 #' }
 #' @export
@@ -62,7 +65,8 @@ rockr.stop <- function(conn) {
 #' @return Logical indicating wether the R server is running (invisible).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.stop(conn)
 #' }
 #' @export
@@ -85,7 +89,8 @@ rockr.restart <- function(conn) {
 #' @param limit The number of lines in the tail.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.log(conn, 10)
 #' }
 #' @export
@@ -102,7 +107,8 @@ rockr.log <- function(conn, limit=100) {
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.version(conn, 10)
 #' }
 #' @export
@@ -119,7 +125,8 @@ rockr.version <- function(conn) {
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.packages(conn)
 #' }
 #' @export
@@ -136,7 +143,8 @@ rockr.packages <- function(conn) {
 #' @param conn A rockr connection object.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.packages_datashield(conn)
 #' }
 #' @export
@@ -154,7 +162,8 @@ rockr.packages_datashield <- function(conn) {
 #' @param name The package name.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.package(conn, 'tibble')
 #' }
 #' @export
@@ -175,7 +184,8 @@ rockr.package <- function(conn, name) {
 #' @param manager The package manager: cran, github (gh), bioconductor (bioc).
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.package_install(conn, 'tibble')
 #' }
 #' @export
@@ -193,7 +203,8 @@ rockr.package_install <- function(conn, name, ref=NULL, manager='cran') {
 #' @param name The package name or identifier in the source code repository.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='administrator', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.package_rm(conn, 'tibble')
 #' }
 #' @export

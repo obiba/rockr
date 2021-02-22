@@ -21,7 +21,8 @@ Assign an R expression to a symbol in the remote R session.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+conn <- rockr.connect(username='user', password='password',
+                      url='https://rocker-demo.obiba.org')
 rockr.open(conn)
 rockr.assign.expr(conn, "x", 123)
 rockr.assign.expr(conn, "y", "abc")

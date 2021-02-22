@@ -11,7 +11,8 @@
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' # download a file
 #' rockr.file_download(conn, 'data.csv')
@@ -23,6 +24,7 @@
 #' }
 #' @export
 rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
+  .is.opened(conn)
   path <- ifelse(is.null(destination), source, destination)
   parent <- dirname(path)
   if (!dir.exists(parent)) {
@@ -55,7 +57,8 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(username='user', password='password',
+#'                       url='https://rocker-demo.obiba.org')
 #' rockr.open(conn)
 #' # upload a file
 #' rockr.file_upload(conn, 'data.csv')
@@ -67,6 +70,7 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' }
 #' @export
 rockr.file_upload <- function(conn, source, destination=NULL, overwrite=FALSE, temp = FALSE) {
+  .is.opened(conn)
   r <- POST(.url(conn, "r", "session", conn$session$id, "_upload"), body=list(file=httr::upload_file(source), path=destination, overwrite=overwrite, temp=temp),
        encode = "multipart", content_type("multipart/form-data"), accept("application/json"),
        add_headers(Authorization = conn$authorization), config=conn$config, handle=conn$handle, .verbose())
