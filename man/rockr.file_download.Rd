@@ -35,9 +35,7 @@ rockr.open(conn)
 # download a file
 rockr.file_download(conn, 'data.csv')
 # download, create destination folder and rename file
-rockr.file_download(conn, '/DatabaseTest.sav', 'spss/test.sav')
-# download a folder
-rockr.file_download(conn, 'output', 'output.zip')
+rockr.file_download(conn, 'DatabaseTest.sav', 'spss/test.sav')
 rockr.close(conn)
 }
 }

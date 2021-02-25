@@ -99,54 +99,6 @@ rockr.connect <- function(username=getOption("rockr.username"), password=getOpti
   conn
 }
 
-#' Open a R session, and store the session ID within the connection object.
-#'
-#' @title Open an R session
-#'
-#' @family connection functions
-#' @param conn A rockr connection object.
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.close(conn)
-#' }
-#' @export
-rockr.open <- function(conn) {
-  if (!is.null(conn$session)) {
-    warning("Closing a previous R session")
-    rockr.close(conn)
-  }
-  # create an R session
-  resp <- httr::POST(.url(conn, "r", "sessions"), config = conn$config, httr::add_headers(Authorization = conn$authorization, 'X-Rocker-Auth' = conn$token),
-                     handle = conn$handle, content_type("application/json"), .verbose())
-  if (resp$status>=300) {
-    .handleError(conn, resp)
-  }
-  session <- content(resp)
-  conn$session <- session
-}
-
-#' Close the R session, if there is any associated to the connection.
-#'
-#' @title Close the R session
-#'
-#' @family connection functions
-#' @param conn A rockr connection object.
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.close(conn)
-#' }
-#' @export
-rockr.close <- function(conn) {
-  if (!is.null(conn$session)) {
-    ignore <- rockr.delete(conn, "r", "session", conn$session$id)
-    conn$session <- NULL
-  }
-}
-
 #' @export
 print.rockr <- function(x, ...) {
   cat("url:", x$url, "\n")

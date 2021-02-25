@@ -166,6 +166,7 @@ rockr.log(conn, 100)
 
 # packages management
 rockr.packages(conn)
+rockr.packages_rm(conn, c('toto', 'tutu'))
 rockr.package(conn, 'rlang')
 rockr.package_rm(conn, 'rlang')
 rockr.package(conn, 'rlang')
@@ -184,3 +185,7 @@ rockr.open(conn)
 rockr.eval.source(conn, path = "~/projects/R/system-info.R", json = TRUE)
 rockr.close(conn)
 
+rlang::last_trace()
+
+rockr.sessions(conn)
+rockr.sessions(conn, subject = "user")
