@@ -75,3 +75,13 @@ test_that("Assign expr async", {
 
   rockr.close(conn)
 })
+
+test_that("Assign expr failure", {
+  check_skip()
+  conn <- rockr.connect(username = "user", password = "password")
+  rockr.open(conn)
+
+  expect_error(rockr.assign(conn, "x", call("stop", "test")))
+
+  rockr.close(conn)
+})

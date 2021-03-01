@@ -1,4 +1,3 @@
-
 test_that("R server status", {
   check_skip()
   conn <- rockr.connect(username = "administrator", password = "password")
@@ -33,3 +32,12 @@ test_that("R server start/stop", {
   expect_equal(length(rockr.sessions(conn)), 0)
 })
 
+test_that("R server status - manager/user", {
+  check_skip()
+  conn <- rockr.connect(username = "manager", password = "password")
+  status <- rockr.status(conn)
+  expect_true(status$running)
+
+  conn <- rockr.connect(username = "user", password = "password")
+  expect_error(rockr.status(conn))
+})

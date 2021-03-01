@@ -33,3 +33,15 @@ test_that("Eval quote/call", {
 
   rockr.close(conn)
 })
+
+test_that("Eval failure", {
+  check_skip()
+  conn <- rockr.connect(username = "user", password = "password")
+  rockr.open(conn)
+
+  expect_error(rockr.eval(conn, call("stop", "test")))
+
+  rockr.close(conn)
+})
+
+
