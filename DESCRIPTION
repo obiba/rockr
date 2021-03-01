@@ -3,7 +3,7 @@ Type: Package
 Title: 'Rock' R Server Client
 Description: Connector to the REST API of a 'Rock' R server, to perform operations 
   on a remote R server session, or administration tasks.
-Version: 0.9.0
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Yannick",
              family = "Marcon",
@@ -21,7 +21,9 @@ Imports:
     mime,
     progress
 Suggests:
-    knitr
+    knitr,
+    testthat (>= 3.0.0),
+    tibble
 License: MIT + file LICENSE
 LazyData: true
 VignetteBuilder: 
@@ -29,4 +31,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, r6 = FALSE)
 RoxygenNote: 7.1.1
-
+Config/testthat/edition: 3

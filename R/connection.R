@@ -5,12 +5,10 @@
 #'
 #' @family connection functions
 #' @return A rockr connection object.
-#' @param username User name in Rocker R server. Can be provided by "rockr.username" option.
-#' @param password User password in Rocker R server. Can be provided by "rockr.password" option.
-#' @param token Personal access token. Only effective if the username or the password is NULL or empty.
-#'  Can be provided by "rockr.token" option.
-#' @param url Rocker R server url. Can be provided by "rockr.url" option.
-#' @param opts Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rockr.opts" option.
+#' @param username User name in Rocker R server. Can be provided by "rock.username" option.
+#' @param password User password in Rocker R server. Can be provided by "rock.password" option.
+#' @param url Rocker R server url. Can be provided by "rock.url" option.
+#' @param opts Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rock.opts" option.
 #' @export
 #' @import httr
 #' @examples
@@ -42,8 +40,8 @@
 #'    sslkey='my-privatekey.pem'))
 #' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
 #'}
-rockr.connect <- function(username=getOption("rockr.username"), password=getOption("rockr.password"),
-                        token=getOption("rockr.token"), url=getOption("rockr.url"), opts=getOption("rockr.opts", list())) {
+rockr.connect <- function(username=getOption("rock.username"), password=getOption("rock.password"),
+                        url=getOption("rock.url"), opts=getOption("rock.opts", list())) {
   if (is.null(url)) stop("Rocker R server url is required", call.=FALSE)
   conn <- new.env(parent=globalenv())
   # Username
@@ -79,14 +77,6 @@ rockr.connect <- function(username=getOption("rockr.username"), password=getOpti
      && !is.na(password) && !is.null(password) && nchar(password) > 0) {
     # Authorization header
     conn$authorization <- .authorizationHeaderRockr(username, password)
-  } else if (!is.na(token) && !is.null(token) && nchar(token) > 0) {
-    if (.is.JWT(token)) {
-      # Bearer header
-      conn$authorization <- .authorizationHeaderBearer(token)
-    } else {
-      # Personal Access Token header
-      conn$token <- .tokenHeader(token)
-    }
   } else {
     stop("rockr authentication strategy not identified: either provide username/password or API access token or SSL certificate/private keys", call.=FALSE)
   }

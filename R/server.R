@@ -73,11 +73,11 @@ rockr.stop <- function(conn) {
 #' @import httr
 rockr.restart <- function(conn) {
   info <- rockr.get(conn, "rserver")
-  if (info$rServerStatus$running) {
+  if (info$running) {
     rockr.delete(conn, "rserver")
   }
   info <- rockr.put(conn, "rserver")
-  invisible(info$rServerStatus$running)
+  invisible(info$running)
 }
 
 #' Log of the R server

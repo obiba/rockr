@@ -1,0 +1,35 @@
+
+test_that("R server status", {
+  check_skip()
+  conn <- rockr.connect(username = "administrator", password = "password")
+  status <- rockr.status(conn)
+  expect_true(status$running)
+  expect_equal(status$tags, list("default"))
+})
+
+test_that("R server start/stop", {
+  check_skip()
+  conn <- rockr.connect(username = "administrator", password = "password")
+  expect_true(rockr.status(conn)$running)
+
+  # stop/start
+  rockr.stop(conn)
+  expect_false(rockr.status(conn)$running)
+  rockr.start(conn)
+  expect_true(rockr.status(conn)$running)
+
+  # start twice does not fail
+  rockr.start(conn)
+  expect_true(rockr.status(conn)$running)
+
+  # restart
+  rockr.restart(conn)
+  expect_true(rockr.status(conn)$running)
+
+  # sessions are cleared on restart
+  rockr.open(conn)
+  expect_equal(length(rockr.sessions(conn)), 1)
+  rockr.restart(conn)
+  expect_equal(length(rockr.sessions(conn)), 0)
+})
+

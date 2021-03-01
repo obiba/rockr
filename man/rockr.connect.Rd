@@ -5,24 +5,20 @@
 \title{Rocker connection}
 \usage{
 rockr.connect(
-  username = getOption("rockr.username"),
-  password = getOption("rockr.password"),
-  token = getOption("rockr.token"),
-  url = getOption("rockr.url"),
-  opts = getOption("rockr.opts", list())
+  username = getOption("rock.username"),
+  password = getOption("rock.password"),
+  url = getOption("rock.url"),
+  opts = getOption("rock.opts", list())
 )
 }
 \arguments{
-\item{username}{User name in Rocker R server. Can be provided by "rockr.username" option.}
+\item{username}{User name in Rocker R server. Can be provided by "rock.username" option.}
 
-\item{password}{User password in Rocker R server. Can be provided by "rockr.password" option.}
+\item{password}{User password in Rocker R server. Can be provided by "rock.password" option.}
 
-\item{token}{Personal access token. Only effective if the username or the password is NULL or empty.
-Can be provided by "rockr.token" option.}
+\item{url}{Rocker R server url. Can be provided by "rock.url" option.}
 
-\item{url}{Rocker R server url. Can be provided by "rockr.url" option.}
-
-\item{opts}{Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rockr.opts" option.}
+\item{opts}{Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rock.opts" option.}
 }
 \value{
 A rockr connection object.

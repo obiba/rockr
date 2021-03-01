@@ -24,6 +24,7 @@ rockr.commands <- function(conn, df=TRUE) {
   n <- length(res)
   if (n > 0) {
     id <- rep(NA, n)
+    sessionId <- rep(NA, n)
     script <- rep(NA, n)
     status <- rep(NA, n)
     withResult <- rep(NA, n)
@@ -36,6 +37,7 @@ rockr.commands <- function(conn, df=TRUE) {
     for (i in 1:n) {
       item <- res[[i]]
       id[i] <- item$id
+      sessionId[i] <- item$sessionId
       script[i] <- item$script
       status[i] <- item$status
       withResult[i] <- item$withResult
@@ -52,7 +54,7 @@ rockr.commands <- function(conn, df=TRUE) {
       withError[i] <- item$withError
       finished[i] <- item$finished
     }
-    data.frame(id, script, status, withResult, withError, error, finished, createdDate, startDate, endDate)
+    data.frame(id, sessionId, script, status, withResult, withError, error, finished, createdDate, startDate, endDate)
   } else {
     data.frame()
   }
