@@ -40,8 +40,19 @@ test_that("Eval failure", {
   rockr.open(conn)
 
   expect_error(rockr.eval(conn, call("stop", "test")))
+  expect_error(rockr.eval(conn, NULL))
 
   rockr.close(conn)
 })
 
+test_that("Eval NULL", {
+  check_skip()
+  conn <- rockr.connect(username = "user", password = "password")
+  rockr.open(conn)
+
+  expect_null(rockr.eval(conn, "NULL"))
+  expect_null(rockr.eval(conn, "NULL", json = TRUE))
+
+  rockr.close(conn)
+})
 

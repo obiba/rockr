@@ -267,10 +267,17 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 .handleError <- function(conn, response) {
   headers <- httr::headers(response)
   content <- .getContent(conn, response)
-  if (!is.null(content) && "message" %in% names(content)) {
-    stop(content$message, call.=FALSE)
+  if (.is.verbose()) {
+    warning(httr::content(response, as = "text", encoding = conn$encoding))
   }
-  msg <- http_status(response)$message
+  msg <- paste0("[", http_status(response)$message, "]")
+  if (!is.null(content)) {
+    if (!is.null(content$message) && content$message != "") {
+      stop(paste0(msg, " ", content$message), call.=FALSE)
+    } else if (!is.null(content$error) && content$error != "") {
+      stop(paste0(msg, " ", content$error), call.=FALSE)
+    }
+  }
   stop(msg, call.=FALSE)
 }
 
