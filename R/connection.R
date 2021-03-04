@@ -268,7 +268,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   headers <- httr::headers(response)
   content <- .getContent(conn, response)
   if (.is.verbose()) {
-    warning(httr::content(response, as = "text", encoding = conn$encoding))
+    warning(httr::content(response, as = "text", encoding = conn$encoding), call. = FALSE)
   }
   msg <- paste0("[", http_status(response)$message, "]")
   if (!is.null(content)) {
