@@ -15,6 +15,9 @@ rockr.command_result(conn, id, wait = FALSE, rm = TRUE)
 
 \item{rm}{Remove command from the list of asynchronous commands after retrieving the result (default is TRUE).}
 }
+\value{
+The command result as an unserialized object.
+}
 \description{
 Get the result of an asynchronous R commands in the remote R session. The command is removed from the
 remote R session after this call.

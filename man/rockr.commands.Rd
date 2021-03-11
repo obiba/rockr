@@ -11,6 +11,9 @@ rockr.commands(conn, df = TRUE)
 
 \item{df}{Return a data.frame (default is TRUE)}
 }
+\value{
+The data.frame of command objects, one column per property.
+}
 \description{
 Get the list of asynchronous R commands in the remote R session.
 }

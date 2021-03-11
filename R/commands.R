@@ -6,6 +6,7 @@
 #' @family command functions
 #' @param conn A rockr connection object.
 #' @param df Return a data.frame (default is TRUE)
+#' @return The data.frame of command objects, one column per property.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -68,6 +69,7 @@ rockr.commands <- function(conn, df=TRUE) {
 #' @param conn A rockr connection object.
 #' @param id R command ID.
 #' @param wait Wait for the command to complete.
+#' @return The command object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -93,6 +95,7 @@ rockr.command <- function(conn, id, wait=FALSE) {
 #' @family command functions
 #' @param conn A rockr connection object.
 #' @param id R command ID.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect('administrator','password',
@@ -113,6 +116,7 @@ rockr.command_rm <- function(conn, id) {
 #'
 #' @family command functions
 #' @param conn A rockr connection object.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -139,6 +143,7 @@ rockr.commands_rm <- function(conn) {
 #' @param id R command ID.
 #' @param wait Wait for the command to complete (default is FALSE).
 #' @param rm Remove command from the list of asynchronous commands after retrieving the result (default is TRUE).
+#' @return The command result as an unserialized object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',

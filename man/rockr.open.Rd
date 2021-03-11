@@ -9,6 +9,9 @@ rockr.open(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+Void
+}
 \description{
 Open a R session, and store the session object within the connection object.
 }

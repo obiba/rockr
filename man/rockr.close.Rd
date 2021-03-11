@@ -9,6 +9,9 @@ rockr.close(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+Void
+}
 \description{
 Close the R session, if there is any associated to the connection.
 }

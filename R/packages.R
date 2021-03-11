@@ -4,6 +4,7 @@
 #'
 #' @family administration functions
 #' @param conn A rockr connection object.
+#' @return The matrix of the R packages, same as the one from install.packages().
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -23,6 +24,7 @@ rockr.packages <- function(conn) {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param names The package names.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -41,6 +43,7 @@ rockr.packages_rm <- function(conn, names) {
 #'
 #' @family administration functions
 #' @param conn A rockr connection object.
+#' @return The list of the DataSHIELD R packages properties (AggregateMethods, AssignMethods, Options)
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -60,6 +63,7 @@ rockr.packages_datashield <- function(conn) {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param name The package name.
+#' @return The R package description object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -82,6 +86,7 @@ rockr.package <- function(conn, name) {
 #' @param name The package name or identifier in the source code repository.
 #' @param ref The branch/commit number of the source code repositories.
 #' @param manager The package manager: cran, github (gh), bioconductor (bioc).
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -101,6 +106,7 @@ rockr.package_install <- function(conn, name, ref=NULL, manager='cran') {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param name The package name.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',

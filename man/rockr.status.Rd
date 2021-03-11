@@ -9,6 +9,9 @@ rockr.status(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+The R server status object.
+}
 \description{
 Get the status of the R server, including information about the server node.
 }

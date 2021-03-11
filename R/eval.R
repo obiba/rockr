@@ -8,7 +8,7 @@
 #' @param json Response is in JSON format or an object serialized by R. Default is FALSE.
 #' @param async R script is executed asynchronously within the session (default is FALSE).
 #'   If TRUE, the value returned is the command object to look for.
-#' @return A unserialized R object.
+#' @return The unserialized result object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -44,6 +44,7 @@ rockr.eval <- function(conn, script, json=FALSE, async=FALSE) {
 #' @param json Response is in JSON format or an object serialized by R. Default is FALSE.
 #' @param async R script is executed asynchronously within the session (default is FALSE).
 #'   If TRUE, the value returned is the command object to look for.
+#' @return The unserialized result object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',

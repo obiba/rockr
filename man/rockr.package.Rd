@@ -11,6 +11,9 @@ rockr.package(conn, name)
 
 \item{name}{The package name.}
 }
+\value{
+The R package description object.
+}
 \description{
 Get the package description from the R server.
 }

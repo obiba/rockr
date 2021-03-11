@@ -9,6 +9,9 @@ rockr.packages(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+The matrix of the R packages, same as the one from install.packages().
+}
 \description{
 Get the list of packages from the R server.
 }

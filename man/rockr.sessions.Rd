@@ -11,6 +11,9 @@ rockr.sessions(conn, subject = NULL)
 
 \item{subject}{Filter by subject name owning the sessions (requires administrator or manager role to be effective).}
 }
+\value{
+The list of the R session objects.
+}
 \description{
 Get the list of the R sessions. Users with administrator or manager role can list the R sessions. Regular users
 can only list their own.

@@ -15,6 +15,9 @@ rockr.package_install(conn, name, ref = NULL, manager = "cran")
 
 \item{manager}{The package manager: cran, github (gh), bioconductor (bioc).}
 }
+\value{
+Void
+}
 \description{
 Install a package in the R server. Package can be in different kind of
 repositories: CRAN, GitHub or Bioconductor.

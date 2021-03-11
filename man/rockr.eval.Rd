@@ -17,7 +17,7 @@ rockr.eval(conn, script, json = FALSE, async = FALSE)
 If TRUE, the value returned is the command object to look for.}
 }
 \value{
-A unserialized R object.
+The unserialized result object.
 }
 \description{
 Execute a R script in the remote R session.

@@ -11,6 +11,9 @@ rockr.session(conn, id)
 
 \item{id}{The R session id to look for.}
 }
+\value{
+The R session object.
+}
 \description{
 Get a specific R session. Users with administrator or manager role can get any R sessions. Regular users
 can only get their own.

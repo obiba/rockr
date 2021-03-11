@@ -8,6 +8,7 @@
 #' @param value Value to assign to the symbol: can be a data value or a R script to execute.
 #' @param async R script is executed asynchronously within the session (default is FALSE).
 #'   If TRUE, the value returned is the ID of the command to look for.
+#' @return The command object if async is TRUE
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -45,6 +46,7 @@ rockr.assign <- function(conn, symbol, value, async=FALSE) {
 #' @param value Value to assign to the symbol: can be a primitive value or a R script to execute.
 #' @param async R script is executed asynchronously within the session (default is FALSE).
 #'   If TRUE, the value returned is the ID of the command to look for.
+#' @return The command object if async is TRUE
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -82,6 +84,7 @@ rockr.assign.expr <- function(conn, symbol, value, async=FALSE) {
 #' @param value The R object to assign (data.frame, vector, etc.).
 #' @param async R script is executed asynchronously within the session (default is FALSE).
 #'   If TRUE, the value returned is the ID of the command to look for.
+#' @return The command object if async is TRUE
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -102,4 +105,7 @@ rockr.assign.data <- function(conn, symbol, value, async=FALSE) {
   body <- gsub("[\r\n]", "", body)
   query <- list(s = symbol, async = async)
   resp <- rockr.post(conn, "r", "session", conn$session$id, "_assign", query = query, body = body, contentType = "application/x-rdata")
+  if (async) {
+    resp
+  }
 }

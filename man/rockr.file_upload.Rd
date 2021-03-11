@@ -24,6 +24,9 @@ If empty (default behavior), the destination file name will be the same as the s
 
 \item{temp}{Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.}
 }
+\value{
+Void
+}
 \description{
 Upload a file into the Rocker R session working directory.
 }

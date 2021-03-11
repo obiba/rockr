@@ -11,6 +11,9 @@ rockr.log(conn, limit = 100)
 
 \item{limit}{The number of lines in the tail.}
 }
+\value{
+A vector of character strings, one per log file line.
+}
 \description{
 Get the tail of the R server log.
 }

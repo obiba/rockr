@@ -13,6 +13,9 @@ rockr.command(conn, id, wait = FALSE)
 
 \item{wait}{Wait for the command to complete.}
 }
+\value{
+The command object.
+}
 \description{
 Get an asynchronous R commands in the remote R session.
 }

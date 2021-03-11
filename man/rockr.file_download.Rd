@@ -24,6 +24,9 @@ Any non-existing parent directories will be created.}
 
 \item{temp}{Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.}
 }
+\value{
+Void
+}
 \description{
 Download a file or a folder from the Rocker R session working directory.
 }

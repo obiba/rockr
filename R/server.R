@@ -4,6 +4,7 @@
 #'
 #' @family administration functions
 #' @param conn A rockr connection object.
+#' @return The R server status object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -87,6 +88,7 @@ rockr.restart <- function(conn) {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param limit The number of lines in the tail.
+#' @return A vector of character strings, one per log file line.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -105,6 +107,7 @@ rockr.log <- function(conn, limit=100) {
 #'
 #' @family administration functions
 #' @param conn A rockr connection object.
+#' @return A simple.list, same as R.version.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',

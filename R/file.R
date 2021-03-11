@@ -9,6 +9,7 @@
 #' Any non-existing parent directories will be created.
 #' @param overwrite Overwrite the destination file if TRUE. Default is FALSE.
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
@@ -53,6 +54,7 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' If empty (default behavior), the destination file name will be the same as the source one.
 #' @param overwrite Overwrite the destination file if TRUE. Default is FALSE.
 #' @param temp Logical to specify whether the root folder is the R session's home or the temporary folder. Default is FALSE.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',

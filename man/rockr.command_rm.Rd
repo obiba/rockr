@@ -11,6 +11,9 @@ rockr.command_rm(conn, id)
 
 \item{id}{R command ID.}
 }
+\value{
+Void
+}
 \description{
 Remove an asynchronous R commands in the remote R session.
 }

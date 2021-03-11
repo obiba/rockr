@@ -9,6 +9,9 @@ rockr.version(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+A simple.list, same as R.version.
+}
 \description{
 Get the version object of the R server.
 }

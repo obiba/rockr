@@ -9,6 +9,9 @@ rockr.packages_datashield(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+The list of the DataSHIELD R packages properties (AggregateMethods, AssignMethods, Options)
+}
 \description{
 Discover the list of DataSHIELD packages and their settings from the R server.
 }

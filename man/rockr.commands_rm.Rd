@@ -9,6 +9,9 @@ rockr.commands_rm(conn)
 \arguments{
 \item{conn}{A rockr connection object.}
 }
+\value{
+Void
+}
 \description{
 Remove all asynchronous R commands in the remote R session.
 }

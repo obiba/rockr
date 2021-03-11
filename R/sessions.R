@@ -6,6 +6,7 @@
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param subject Filter by subject name owning the sessions (requires administrator or manager role to be effective).
+#' @return The list of the R session objects.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -26,6 +27,7 @@ rockr.sessions <- function(conn, subject = NULL) {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param id The R session id to look for.
+#' @return The R session object.
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -46,6 +48,7 @@ rockr.session <- function(conn, id) {
 #' @family administration functions
 #' @param conn A rockr connection object.
 #' @param session A R session object.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
@@ -75,6 +78,7 @@ rockr.session_switch <- function(conn, session) {
 #'
 #' @family connection functions
 #' @param conn A rockr connection object.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
@@ -102,6 +106,7 @@ rockr.open <- function(conn) {
 #'
 #' @family connection functions
 #' @param conn A rockr connection object.
+#' @return Void
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')

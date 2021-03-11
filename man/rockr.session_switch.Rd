@@ -11,6 +11,9 @@ rockr.session_switch(conn, session)
 
 \item{session}{A R session object.}
 }
+\value{
+Void
+}
 \description{
 Change the R session that is attached to the connection object. This allows to interact with a R session
 after another. Of course proper permission apply when executing R operations on this R session.

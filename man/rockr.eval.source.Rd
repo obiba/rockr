@@ -16,6 +16,9 @@ rockr.eval.source(conn, path, json = FALSE, async = FALSE)
 \item{async}{R script is executed asynchronously within the session (default is FALSE).
 If TRUE, the value returned is the command object to look for.}
 }
+\value{
+The unserialized result object.
+}
 \description{
 Upload a R file script and execute it in the remote R session with source().
 }

@@ -16,6 +16,9 @@ rockr.assign(conn, symbol, value, async = FALSE)
 \item{async}{R script is executed asynchronously within the session (default is FALSE).
 If TRUE, the value returned is the ID of the command to look for.}
 }
+\value{
+The command object if async is TRUE
+}
 \description{
 Assign an R expression or R data to a symbol in the remote R session.
 }

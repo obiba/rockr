@@ -11,6 +11,9 @@ rockr.packages_rm(conn, names)
 
 \item{names}{The package names.}
 }
+\value{
+Void
+}
 \description{
 Remove some packages from the R server.
 }
