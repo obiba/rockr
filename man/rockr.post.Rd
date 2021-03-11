@@ -32,14 +32,6 @@ rockr.post(
 \description{
 Generic REST resource creation.
 }
-\examples{
-\dontrun{
-conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.open(conn)
-rockr.post(conn, 'some', 'resources', body='ls()')
-rockr.close(conn)
-}
-}
 \seealso{
 Other REST functions: 
 \code{\link{rockr.delete}()},

@@ -29,14 +29,6 @@ rockr.put(
 \description{
 Generic REST resource update.
 }
-\examples{
-\dontrun{
-conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.open(conn)
-rockr.put(conn, 'some', 'resource', 'toupdate', body='{"some":"value"}')
-rockr.close(conn)
-}
-}
 \seealso{
 Other REST functions: 
 \code{\link{rockr.delete}()},

@@ -18,14 +18,6 @@ rockr.delete(conn, ..., query = list(), callback = NULL)
 \description{
 Generic REST resource deletion.
 }
-\examples{
-\dontrun{
-conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-rockr.open(conn)
-rockr.delete(conn, 'some', 'resource')
-rockr.close(conn)
-}
-}
 \seealso{
 Other REST functions: 
 \code{\link{rockr.get}()},

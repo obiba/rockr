@@ -109,13 +109,6 @@ print.rockr <- function(x, ...) {
 #' @param query Named list of query parameters.
 #' @param callback A callback function to handle the response object.
 #' @import httr
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.get(conn, 'r', 'session', conn$session$id)
-#' rockr.close(conn)
-#' }
 #' @keywords internal
 rockr.get <- function(conn, ..., query=list(), acceptType='application/octet-stream, application/json', callback=NULL) {
   r <- GET(.url(conn, ...), query=query, accept(acceptType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
@@ -133,13 +126,6 @@ rockr.get <- function(conn, ..., query=list(), acceptType='application/octet-str
 #' @param acceptType The type of the body content. Default is 'application/octet-stream, application/json', i.e. a serialized R object or an error message.
 #' @param callback A callback function to handle the response object.
 #' @import httr
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.post(conn, 'some', 'resources', body='ls()')
-#' rockr.close(conn)
-#' }
 #' @keywords internal
 rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
   r <- POST(.url(conn, ...), query=query, body=body, content_type(contentType), accept(acceptType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
@@ -156,13 +142,6 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' @param contentType The type of the body content. Default is 'application/json'.
 #' @param callback A callback function to handle the response object.
 #' @import httr
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.put(conn, 'some', 'resource', 'toupdate', body='{"some":"value"}')
-#' rockr.close(conn)
-#' }
 #' @keywords internal
 rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
   r <- PUT(.url(conn, ...), query=query, body=body, content_type(contentType), add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
@@ -177,13 +156,6 @@ rockr.put <- function(conn, ..., query=list(), body='', contentType='application
 #' @param query Named list of query parameters.
 #' @param callback A callback function to handle the response object.
 #' @import httr
-#' @examples
-#' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
-#' rockr.open(conn)
-#' rockr.delete(conn, 'some', 'resource')
-#' rockr.close(conn)
-#' }
 #' @keywords internal
 rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   r <- DELETE(.url(conn, ...), query=query, add_headers(Authorization = conn$authorization), config=conn$config, handle = conn$handle, .verbose())
