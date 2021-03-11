@@ -26,6 +26,9 @@ rockr.put(
 
 \item{callback}{A callback function to handle the response object.}
 }
+\value{
+The response output object.
+}
 \description{
 Generic REST resource update.
 }

@@ -6,6 +6,9 @@
 \usage{
 .verbose()
 }
+\value{
+The same output as httr::verbose() or NULL
+}
 \description{
 Verbose flag
 }

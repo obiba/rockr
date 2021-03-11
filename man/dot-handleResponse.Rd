@@ -6,6 +6,9 @@
 \usage{
 .handleResponse(conn, response)
 }
+\value{
+The response content object
+}
 \description{
 Default request response handler.
 }

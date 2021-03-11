@@ -6,6 +6,9 @@
 \usage{
 .deparse(expr)
 }
+\value{
+The deparsed expression in a single string
+}
 \description{
 Turn expression into character strings.
 }

@@ -15,6 +15,9 @@ rockr.delete(conn, ..., query = list(), callback = NULL)
 
 \item{callback}{A callback function to handle the response object.}
 }
+\value{
+The response output object.
+}
 \description{
 Generic REST resource deletion.
 }

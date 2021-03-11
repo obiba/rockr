@@ -6,6 +6,9 @@
 \usage{
 .url(conn, ...)
 }
+\value{
+The URL string
+}
 \description{
 Utility method to build urls. Concatenates all arguments and adds a '/' separator between each element
 }

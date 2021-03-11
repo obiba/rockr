@@ -6,6 +6,9 @@
 \usage{
 .getContent(conn, response)
 }
+\value{
+The response content object
+}
 \description{
 Wrapper of httr::content()
 }

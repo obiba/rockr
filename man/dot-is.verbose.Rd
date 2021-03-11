@@ -6,6 +6,9 @@
 \usage{
 .is.verbose()
 }
+\value{
+The verbose option logical value
+}
 \description{
 Verbose option
 }

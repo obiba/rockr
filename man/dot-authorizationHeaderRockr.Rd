@@ -6,6 +6,9 @@
 \usage{
 .authorizationHeaderRockr(username, password)
 }
+\value{
+The header string
+}
 \description{
 Constructs the value for the Opal Authorization header
 }

@@ -2,11 +2,14 @@
 % Please edit documentation in R/connection.R
 \name{.is.opened}
 \alias{.is.opened}
-\title{Check connection is opened}
+\title{Check connection is opened, calls stop() if it is not the case.}
 \usage{
 .is.opened(conn)
 }
+\value{
+Void
+}
 \description{
-Check connection is opened
+Check connection is opened, calls stop() if it is not the case.
 }
 \keyword{internal}

@@ -6,6 +6,9 @@
 \usage{
 .handleError(conn, response)
 }
+\value{
+Always ends with a stop() call
+}
 \description{
 Handle error response
 }

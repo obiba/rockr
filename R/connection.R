@@ -4,11 +4,11 @@
 #' @title Rocker connection
 #'
 #' @family connection functions
-#' @return A rockr connection object.
 #' @param username User name in Rocker R server. Can be provided by "rock.username" option.
 #' @param password User password in Rocker R server. Can be provided by "rock.password" option.
 #' @param url Rocker R server url. Can be provided by "rock.url" option.
 #' @param opts Curl options as described by httr (call httr::httr_options() for details). Can be provided by "rock.opts" option.
+#' @return A rockr connection object.
 #' @export
 #' @import httr
 #' @examples
@@ -108,6 +108,7 @@ print.rockr <- function(x, ...) {
 #' @param ... Resource path segments.
 #' @param query Named list of query parameters.
 #' @param callback A callback function to handle the response object.
+#' @return The response output object.
 #' @import httr
 #' @keywords internal
 rockr.get <- function(conn, ..., query=list(), acceptType='application/octet-stream, application/json', callback=NULL) {
@@ -125,6 +126,7 @@ rockr.get <- function(conn, ..., query=list(), acceptType='application/octet-str
 #' @param contentType The type of the body content. Default is 'application/x-rscript'.
 #' @param acceptType The type of the body content. Default is 'application/octet-stream, application/json', i.e. a serialized R object or an error message.
 #' @param callback A callback function to handle the response object.
+#' @return The response output object.
 #' @import httr
 #' @keywords internal
 rockr.post <- function(conn, ..., query=list(), body='', contentType='application/x-rscript', acceptType='application/octet-stream, application/json', callback=NULL) {
@@ -141,6 +143,7 @@ rockr.post <- function(conn, ..., query=list(), body='', contentType='applicatio
 #' @param body The body of the request.
 #' @param contentType The type of the body content. Default is 'application/json'.
 #' @param callback A callback function to handle the response object.
+#' @return The response output object.
 #' @import httr
 #' @keywords internal
 rockr.put <- function(conn, ..., query=list(), body='', contentType='application/json', callback=NULL) {
@@ -155,6 +158,7 @@ rockr.put <- function(conn, ..., query=list(), body='', contentType='application
 #' @param ... Resource path segments.
 #' @param query Named list of query parameters.
 #' @param callback A callback function to handle the response object.
+#' @return The response output object.
 #' @import httr
 #' @keywords internal
 rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
@@ -163,6 +167,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Utility method to build urls. Concatenates all arguments and adds a '/' separator between each element
+#' @return The URL string
 #' @import utils
 #' @keywords internal
 .url <- function(conn, ...) {
@@ -170,6 +175,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Constructs the value for the Opal Authorization header
+#' @return The header string
 #' @import jsonlite
 #' @keywords internal
 .authorizationHeaderRockr <- function(username, password) {
@@ -177,35 +183,15 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Constructs the value for the Bearer Authorization header
+#' @return The header string
 #' @import jsonlite
 #' @keywords internal
 .authorizationHeaderBearer <- function(jwt) {
   paste("Bearer", jwt)
 }
 
-#' Constructs the value for the X-Opal-Auth header
-#' @import jsonlite
-#' @keywords internal
-.tokenHeader <- function(token) {
-  token
-}
-
-#' Check if token is a JWT one
-#' @keywords internal
-.is.JWT <- function(token) {
-  strings <- strsplit(token, ".", fixed = TRUE)[[1]]
-  if (length(strings) == 3) {
-    jwt.payload <- jsonlite::fromJSON(rawToChar(jsonlite::base64_dec(strings[2])))
-    if (.is.verbose()) {
-      message(rawToChar(jsonlite::base64_dec(strings[2])))
-    }
-    TRUE
-  } else {
-    FALSE
-  }
-}
-
 #' Process response with default handler or the provided one
+#' @return The response content object
 #' @keywords internal
 .handleResponseOrCallback <- function(conn, response, callback=NULL) {
   if (is.null(callback)) {
@@ -217,6 +203,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Default request response handler.
+#' @return The response content object
 #' @keywords internal
 .handleResponse <- function(conn, response) {
   #print(response)
@@ -235,6 +222,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Handle error response
+#' @return Always ends with a stop() call
 #' @keywords internal
 .handleError <- function(conn, response) {
   headers <- httr::headers(response)
@@ -253,22 +241,8 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   stop(msg, call.=FALSE)
 }
 
-#' Default request response Location handler.
-#' @keywords internal
-.handleResponseLocation <- function(conn, response) {
-  if (response$status>=300) {
-    .handleError(conn, response)
-  }
-
-  headers <- httr::headers(response)
-  location <- headers[['location']]
-  if(!is.na(location)) {
-    substring(location, regexpr(pattern = "/ws/", location) + 3)
-  } else {
-    NULL
-  }
-}
-
+#' Handle the file content.
+#' @return The response content object
 #' @import mime
 #' @keywords internal
 .handleAttachment <- function(conn, response, disposition) {
@@ -290,6 +264,8 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   }
 }
 
+#' Handle the response content, unserialize when necessary.
+#' @return The response content object
 #' @import httr
 #' @keywords internal
 .handleContent <- function(conn, response) {
@@ -306,6 +282,7 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Wrapper of httr::content()
+#' @return The response content object
 #' @import httr
 #' @keywords internal
 .getContent <- function(conn, response) {
@@ -319,16 +296,8 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   }
 }
 
-
-#' Check if response content is empty.
-#' @keywords internal
-.isContentEmpty <- function(content) {
-  return(is.null(content)
-         || (is.raw(content) && nchar(rawToChar(content))==0)
-         || (is.character(content) && nchar(content)==0))
-}
-
 #' Verbose flag
+#' @return The same output as httr::verbose() or NULL
 #' @import httr
 #' @keywords internal
 .verbose <- function() {
@@ -340,12 +309,14 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
 }
 
 #' Verbose option
+#' @return The verbose option logical value
 #' @keywords internal
 .is.verbose <- function() {
   getOption("verbose", FALSE)
 }
 
 #' Turn expression into character strings.
+#' @return The deparsed expression in a single string
 #' @keywords internal
 .deparse <- function(expr) {
   expression <- deparse(expr)
@@ -355,7 +326,8 @@ rockr.delete <- function(conn, ..., query=list(), callback=NULL) {
   expression
 }
 
-#' Check connection is opened
+#' Check connection is opened, calls stop() if it is not the case.
+#' @return Void
 #' @keywords internal
 .is.opened <- function(conn) {
   if (is.null(conn$session)) {

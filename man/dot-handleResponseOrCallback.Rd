@@ -6,6 +6,9 @@
 \usage{
 .handleResponseOrCallback(conn, response, callback = NULL)
 }
+\value{
+The response content object
+}
 \description{
 Process response with default handler or the provided one
 }

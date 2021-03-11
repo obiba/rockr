@@ -6,6 +6,9 @@
 \usage{
 .authorizationHeaderBearer(jwt)
 }
+\value{
+The header string
+}
 \description{
 Constructs the value for the Bearer Authorization header
 }
