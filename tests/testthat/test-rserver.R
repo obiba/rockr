@@ -3,7 +3,8 @@ test_that("R server status", {
   conn <- rockr.connect(username = "administrator", password = "password")
   status <- rockr.status(conn)
   expect_true(status$running)
-  expect_equal(status$tags, list("default"))
+  expect_equal(status$cluster, "default")
+  expect_equal(status$tags, list())
 })
 
 test_that("R server start/stop", {
