@@ -4,7 +4,7 @@ Title: 'Rock' R Server Client
 Description: Connector to the REST API of a 'Rock' R server, to perform operations 
   on a remote R server session, or administration tasks. See 'Rock' documentation at
   <https://rockdoc.obiba.org/>.
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     c(person(given = "Yannick",
              family = "Marcon",
