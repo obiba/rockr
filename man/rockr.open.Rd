@@ -17,7 +17,7 @@ Open a R session, and store the session object within the connection object.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+conn <- rockr.connect('administrator','password', url='https://rock-demo.obiba.org')
 rockr.open(conn)
 rockr.close(conn)
 }

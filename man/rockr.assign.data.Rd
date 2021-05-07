@@ -25,7 +25,7 @@ Assign an R object to a R symbol in the remote R session.
 \examples{
 \dontrun{
 conn <- rockr.connect(username='user', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.open(conn)
 # push a data frame to the R server
 rockr.assign.data(o, "D", mtcars)

@@ -25,7 +25,7 @@ Execute a R script in the remote R session.
 \examples{
 \dontrun{
 conn <- rockr.connect(username='user', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.open(conn)
 rockr.eval(conn, "x <- 'foo'")
 rockr.eval(conn, "ls()")

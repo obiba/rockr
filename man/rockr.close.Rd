@@ -17,7 +17,7 @@ Close the R session, if there is any associated to the connection.
 }
 \examples{
 \dontrun{
-conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+conn <- rockr.connect('administrator','password', url='https://rock-demo.obiba.org')
 rockr.open(conn)
 rockr.close(conn)
 }

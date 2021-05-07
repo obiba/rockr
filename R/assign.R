@@ -12,7 +12,7 @@
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.assign(conn, "mtcars", mtcars)
 #' rockr.assign(conn, "x", 123)
@@ -50,7 +50,7 @@ rockr.assign <- function(conn, symbol, value, async=FALSE) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.assign.expr(conn, "x", 123)
 #' rockr.assign.expr(conn, "y", "abc")
@@ -88,7 +88,7 @@ rockr.assign.expr <- function(conn, symbol, value, async=FALSE) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' # push a data frame to the R server
 #' rockr.assign.data(o, "D", mtcars)
