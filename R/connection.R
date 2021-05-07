@@ -17,28 +17,28 @@
 #'
 #' # explicit username/password connection
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                     url='https://rocker-demo.obiba.org')
+#'                     url='https://rock-demo.obiba.org')
 #'
 #' # explicit access token connection
 #' conn <- rockr.connect(token='HYG16LO0VaX4O0UardNbiqmr2ByBpRke',
-#'                     url='https://rocker-demo.obiba.org')
+#'                     url='https://rock-demo.obiba.org')
 #'
 #' # connect using options and user credentials
 #' options(rockr.username='administrator',
 #'  rockr.password='password',
-#'  rockr.url='https://rocker-demo.obiba.org')
+#'  rockr.url='https://rock-demo.obiba.org')
 #' conn <- rockr.connect()
 #'
 #' # connect using options and personal access token
 #' options(rockr.token='HYG16LO0VaX4O0UardNbiqmr2ByBpRke',
-#'  rockr.url='https://rocker-demo.obiba.org')
+#'  rockr.url='https://rock-demo.obiba.org')
 #' conn <- rockr.connect()
 #'
 #' # connect using ssl key pair
 #' options(rockr.opts=list(
 #'    sslcert='my-publickey.pem',
 #'    sslkey='my-privatekey.pem'))
-#' conn <- rockr.connect(url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect(url='https://rock-demo.obiba.org')
 #'}
 rockr.connect <- function(username=getOption("rock.username"), password=getOption("rock.password"),
                         url=getOption("rock.url"), opts=getOption("rock.opts", list())) {

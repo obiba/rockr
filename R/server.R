@@ -8,7 +8,7 @@
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.status(conn)
 #' }
 #' @export
@@ -27,7 +27,7 @@ rockr.status <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.start(conn)
 #' }
 #' @export
@@ -47,7 +47,7 @@ rockr.start <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.stop(conn)
 #' }
 #' @export
@@ -67,7 +67,7 @@ rockr.stop <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.stop(conn)
 #' }
 #' @export
@@ -92,7 +92,7 @@ rockr.restart <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.log(conn, 10)
 #' }
 #' @export
@@ -111,7 +111,7 @@ rockr.log <- function(conn, limit=100) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.version(conn, 10)
 #' }
 #' @export

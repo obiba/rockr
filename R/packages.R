@@ -8,7 +8,7 @@
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.packages(conn)
 #' }
 #' @export
@@ -28,7 +28,7 @@ rockr.packages <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.packages_rm(conn, c('rlang', 'tibble'))
 #' }
 #' @export
@@ -47,7 +47,7 @@ rockr.packages_rm <- function(conn, names) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.packages_datashield(conn)
 #' }
 #' @export
@@ -67,7 +67,7 @@ rockr.packages_datashield <- function(conn) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.package(conn, 'tibble')
 #' }
 #' @export
@@ -90,7 +90,7 @@ rockr.package <- function(conn, name) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.package_install(conn, 'tibble')
 #' }
 #' @export
@@ -110,7 +110,7 @@ rockr.package_install <- function(conn, name, ref=NULL, manager='cran') {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.package_rm(conn, 'tibble')
 #' }
 #' @export

@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.sessions(conn)
 #' }
 #' @export
@@ -31,7 +31,7 @@ rockr.sessions <- function(conn, subject = NULL) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.session(conn, '1234')
 #' }
 #' @export
@@ -52,7 +52,7 @@ rockr.session <- function(conn, id) {
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='administrator', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' # open several R sessions
 #' rockr.open(conn)
 #' rockr.open(conn)
@@ -81,7 +81,7 @@ rockr.session_switch <- function(conn, session) {
 #' @return Void
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password', url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.close(conn)
 #' }
@@ -109,7 +109,7 @@ rockr.open <- function(conn) {
 #' @return Void
 #' @examples
 #' \dontrun{
-#' conn <- rockr.connect('administrator','password', url='https://rocker-demo.obiba.org')
+#' conn <- rockr.connect('administrator','password', url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' rockr.close(conn)
 #' }

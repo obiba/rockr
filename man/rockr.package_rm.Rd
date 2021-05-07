@@ -20,7 +20,7 @@ Remove a package from the R server.
 \examples{
 \dontrun{
 conn <- rockr.connect(username='administrator', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.package_rm(conn, 'tibble')
 }
 }

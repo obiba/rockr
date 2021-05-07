@@ -25,7 +25,7 @@ Upload a R file script and execute it in the remote R session with source().
 \examples{
 \dontrun{
 conn <- rockr.connect(username='user', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.open(conn)
 rockr.eval.source(conn, "myscript.R")
 rockr.close(conn)

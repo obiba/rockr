@@ -18,7 +18,7 @@ Remove all asynchronous R commands in the remote R session.
 \examples{
 \dontrun{
 conn <- rockr.connect(username='user', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.open(conn)
 rockr.commands_rm(conn)
 rockr.close(conn)

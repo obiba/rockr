@@ -21,7 +21,7 @@ after another. Of course proper permission apply when executing R operations on 
 \examples{
 \dontrun{
 conn <- rockr.connect(username='administrator', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 # open several R sessions
 rockr.open(conn)
 rockr.open(conn)

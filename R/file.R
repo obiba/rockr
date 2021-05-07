@@ -13,7 +13,7 @@
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' # download a file
 #' rockr.file_download(conn, 'data.csv')
@@ -58,7 +58,7 @@ rockr.file_download <- function(conn, source, destination=NULL, overwrite=FALSE,
 #' @examples
 #' \dontrun{
 #' conn <- rockr.connect(username='user', password='password',
-#'                       url='https://rocker-demo.obiba.org')
+#'                       url='https://rock-demo.obiba.org')
 #' rockr.open(conn)
 #' # upload a file
 #' rockr.file_upload(conn, 'data.csv')

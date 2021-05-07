@@ -33,7 +33,7 @@ Upload a file into the Rocker R session working directory.
 \examples{
 \dontrun{
 conn <- rockr.connect(username='user', password='password',
-                      url='https://rocker-demo.obiba.org')
+                      url='https://rock-demo.obiba.org')
 rockr.open(conn)
 # upload a file
 rockr.file_upload(conn, 'data.csv')
